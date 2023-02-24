@@ -1,0 +1,151 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| northwind          |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use northwind;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------------------+
+| Tables_in_northwind            |
++--------------------------------+
+| alphabetical list of products  |
+| Categories                     |
+| category sales for 1997        |
+| current product list           |
+| customer and suppliers by city |
+| CustomerCustomerDemo           |
+| CustomerDemographics           |
+| Customers                      |
+| Employees                      |
+| EmployeeTerritories            |
+| invoices                       |
+| Order Details                  |
+| order details extended         |
+| order subtotals                |
+| Orders                         |
+| orders qry                     |
+| product sales for 1997         |
+| Products                       |
+| products above average price   |
+| products by category           |
+| quarterly orders               |
+| Region                         |
+| sales by category              |
+| sales totals by amount         |
+| Shippers                       |
+| summary of sales by quarter    |
+| summary of sales by year       |
+| Suppliers                      |
+| Territories                    |
++--------------------------------+
+29 rows in set (0.00 sec)
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers limit 10;
++------------+------------------------------------+--------------------+------------------------------+------------+------------+---------+
+| CustomerID | CompanyName                        | ContactName        | Address                      | City       | PostalCode | Country |
++------------+------------------------------------+--------------------+------------------------------+------------+------------+---------+
+| ALFKI      | Alfreds Futterkiste                | Maria Anders       | Obere Str. 57                | Berlin     | 12209      | Germany |
+| ANATR      | Ana Trujillo Emparedados y helados | Ana Trujillo       | Avda. de la Constitucin 2222 | Mxico D.F. | 05021      | Mexico  |
+| ANTON      | Antonio Moreno Taquera             | Antonio Moreno     | Mataderos  2312              | Mxico D.F. | 05023      | Mexico  |
+| AROUT      | Around the Horn                    | Thomas Hardy       | 120 Hanover Sq.              | London     | WA1 1DP    | UK      |
+| BERGS      | Berglunds snabbkp                  | Christina Berglund | Berguvsvgen  8               | Lule       | S-958 22   | Sweden  |
+| BLAUS      | Blauer See Delikatessen            | Hanna Moos         | Forsterstr. 57               | Mannheim   | 68306      | Germany |
+| BLONP      | Blondesddsl pre et fils            | Frdrique Citeaux   | 24, place Klber              | Strasbourg | 67000      | France  |
+| BOLID      | Blido Comidas preparadas           | Martn Sommer       | C/ Araquil, 67               | Madrid     | 28023      | Spain   |
+| BONAP      | Bon app'                           | Laurence Lebihan   | 12, rue des Bouchers         | Marseille  | 13008      | France  |
+| BOTTM      | Bottom-Dollar Markets              | Elizabeth Lincoln  | 23 Tsawassen Blvd.           | Tsawassen  | T2F 8M4    | Canada  |
++------------+------------------------------------+--------------------+------------------------------+------------+------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> #Insert a new record in the Customers table#
+mysql> insert into Customers (CustomerID, CompanyName, Address, City, PostalCode, Country) values ('HEKBU', 'Hekkan Burger', 'Gatevein 15', 'Sandnes', '4306', 'Norway'
+);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Customers where CustomerID = 'HERBU';
+Empty set (0.00 sec)
+
+mysql> select * from Customers where CustomerID = 'HEKBU';
++------------+---------------+-------------+--------------+-------------+---------+--------+------------+---------+-------+------+
+| CustomerID | CompanyName   | ContactName | ContactTitle | Address     | City    | Region | PostalCode | Country | Phone | Fax  |
++------------+---------------+-------------+--------------+-------------+---------+--------+------------+---------+-------+------+
+| HEKBU      | Hekkan Burger | NULL        | NULL         | Gatevein 15 | Sandnes | NULL   | 4306       | Norway  | NULL  | NULL |
++------------+---------------+-------------+--------------+-------------+---------+--------+------------+---------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> update Customers set ContactName = 'Jane Doe' where CustomerID = 'HEKBU';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Customers where CustomerID = 'HEKBU';
++------------+---------------+-------------+--------------+-------------+---------+--------+------------+---------+-------+------+
+| CustomerID | CompanyName   | ContactName | ContactTitle | Address     | City    | Region | PostalCode | Country | Phone | Fax  |
++------------+---------------+-------------+--------------+-------------+---------+--------+------------+---------+-------+------+
+| HEKBU      | Hekkan Burger | Jane Doe    | NULL         | Gatevein 15 | Sandnes | NULL   | 4306       | Norway  | NULL  | NULL |
++------------+---------------+-------------+--------------+-------------+---------+--------+------------+---------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where PostalCode is null limit 10;
++------------+------------------------------+------------------+------------------+------+------------+---------+
+| CustomerID | CompanyName                  | ContactName      | Address          | City | PostalCode | Country |
++------------+------------------------------+------------------+------------------+------+------------+---------+
+| HUNGO      | Hungry Owl All-Night Grocers | Patricia McKenna | 8 Johnstown Road | Cork | NULL       | Ireland |
+| Val2       | IT                           | Val2             | NULL             | NULL | NULL       | NULL    |
+| VALON      | IT                           | Valon Hoti       | NULL             | NULL | NULL       | NULL    |
++------------+------------------------------+------------------+------------------+------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where PostalCode is null and Country is null;
++------------+-------------+-------------+---------+------+------------+---------+
+| CustomerID | CompanyName | ContactName | Address | City | PostalCode | Country |
++------------+-------------+-------------+---------+------+------------+---------+
+| Val2       | IT          | Val2        | NULL    | NULL | NULL       | NULL    |
+| VALON      | IT          | Valon Hoti  | NULL    | NULL | NULL       | NULL    |
++------------+-------------+-------------+---------+------+------------+---------+
+2 rows in set (0.01 sec)
+
+mysql> #Set the value of the City columns to 'Oslo', but only the ones where the Country column has the value "Norway"#
+mysql> update Customers set City = 'Oslo' where Country = 'Norway';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country = 'Norway' limit 10;
++------------+---------------+------------------+------------------------+------+------------+---------+
+| CustomerID | CompanyName   | ContactName      | Address                | City | PostalCode | Country |
++------------+---------------+------------------+------------------------+------+------------+---------+
+| HEKBU      | Hekkan Burger | Jane Doe         | Gatevein 15            | Oslo | 4306       | Norway  |
+| SANTG      | Sant Gourmet  | Jonas Bergulfsen | Erling Skakkes gate 78 | Oslo | 4110       | Norway  |
++------------+---------------+------------------+------------------------+------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update Customers set City = 'Oslo', Country = 'Norway' where CustomerID = 'VALON';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country = 'Norway' limit 10;
++------------+---------------+------------------+------------------------+------+------------+---------+
+| CustomerID | CompanyName   | ContactName      | Address                | City | PostalCode | Country |
++------------+---------------+------------------+------------------------+------+------------+---------+
+| HEKBU      | Hekkan Burger | Jane Doe         | Gatevein 15            | Oslo | 4306       | Norway  |
+| SANTG      | Sant Gourmet  | Jonas Bergulfsen | Erling Skakkes gate 78 | Oslo | 4110       | Norway  |
+| VALON      | IT            | Valon Hoti       | NULL                   | Oslo | NULL       | Norway  |
++------------+---------------+------------------+------------------------+------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> #Delete all the records from the Customers table where the Country value is 'Norway'#
+mysql> delete from Customers where CustomerID = 'VALON';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Customers where CustomerID = 'VALON';
+Empty set (0.00 sec)
