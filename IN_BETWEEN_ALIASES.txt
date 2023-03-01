@@ -1,0 +1,950 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| northwind          |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use northwind;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------------------+
+| Tables_in_northwind            |
++--------------------------------+
+| alphabetical list of products  |
+| Categories                     |
+| category sales for 1997        |
+| current product list           |
+| customer and suppliers by city |
+| CustomerCustomerDemo           |
+| CustomerDemographics           |
+| Customers                      |
+| Employees                      |
+| EmployeeTerritories            |
+| invoices                       |
+| Order Details                  |
+| order details extended         |
+| order subtotals                |
+| Orders                         |
+| orders qry                     |
+| product sales for 1997         |
+| Products                       |
+| products above average price   |
+| products by category           |
+| quarterly orders               |
+| Region                         |
+| sales by category              |
+| sales totals by amount         |
+| Shippers                       |
+| summary of sales by quarter    |
+| summary of sales by year       |
+| Suppliers                      |
+| Territories                    |
++--------------------------------+
+29 rows in set (0.01 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country in ('Germany', 'France', 'UK');
++------------+---------------------------+---------------------+------------------------------+----------------+------------+---------+
+| CustomerID | CompanyName               | ContactName         | Address                      | City           | PostalCode | Country |
++------------+---------------------------+---------------------+------------------------------+----------------+------------+---------+
+| ALFKI      | Alfreds Futterkiste       | Maria Anders        | Obere Str. 57                | Berlin         | 12209      | Germany |
+| AROUT      | Around the Horn           | Thomas Hardy        | 120 Hanover Sq.              | London         | WA1 1DP    | UK      |
+| BLAUS      | Blauer See Delikatessen   | Hanna Moos          | Forsterstr. 57               | Mannheim       | 68306      | Germany |
+| BLONP      | Blondesddsl pre et fils   | Frdrique Citeaux    | 24, place Klber              | Strasbourg     | 67000      | France  |
+| BONAP      | Bon app'                  | Laurence Lebihan    | 12, rue des Bouchers         | Marseille      | 13008      | France  |
+| BSBEV      | B's Beverages             | Victoria Ashworth   | Fauntleroy Circus            | London         | EC2 5NT    | UK      |
+| CONSH      | Consolidated Holdings     | Elizabeth Brown     | Berkeley Gardens 12  Brewery | London         | WX1 6LT    | UK      |
+| DRACD      | Drachenblut Delikatessen  | Sven Ottlieb        | Walserweg 21                 | Aachen         | 52066      | Germany |
+| DUMON      | Du monde entier           | Janine Labrune      | 67, rue des Cinquante Otages | Nantes         | 44000      | France  |
+| EASTC      | Eastern Connection        | Ann Devon           | 35 King George               | London         | WX3 6FW    | UK      |
+| FOLIG      | Folies gourmandes         | Martine Ranc        | 184, chausse de Tournai      | Lille          | 59000      | France  |
+| FRANK      | Frankenversand            | Peter Franken       | Berliner Platz 43            | Mnchen         | 80805      | Germany |
+| FRANR      | France restauration       | Carine Schmitt      | 54, rue Royale               | Nantes         | 44000      | France  |
+| ISLAT      | Island Trading            | Helen Bennett       | Garden House Crowther Way    | Cowes          | PO31 7PJ   | UK      |
+| KOENE      | Kniglich Essen            | Philip Cramer       | Maubelstr. 90                | Brandenburg    | 14776      | Germany |
+| LACOR      | La corne d'abondance      | Daniel Tonini       | 67, avenue de l'Europe       | Versailles     | 78000      | France  |
+| LAMAI      | La maison d'Asie          | Annette Roulet      | 1 rue Alsace-Lorraine        | Toulouse       | 31000      | France  |
+| LEHMS      | Lehmanns Marktstand       | Renate Messner      | Magazinweg 7                 | Frankfurt a.M. | 60528      | Germany |
+| MORGK      | Morgenstern Gesundkost    | Alexander Feuer     | Heerstr. 22                  | Leipzig        | 04179      | Germany |
+| NORTS      | North/South               | Simon Crowther      | South House 300 Queensbridge | London         | SW7 1RZ    | UK      |
+| OTTIK      | Ottilies Kseladen         | Henriette Pfalzheim | Mehrheimerstr. 369           | Kln            | 50739      | Germany |
+| PARIS      | Paris spcialits           | Marie Bertrand      | 265, boulevard Charonne      | Paris          | 75012      | France  |
+| QUICK      | QUICK-Stop                | Horst Kloss         | Taucherstrae 10              | Cunewalde      | 01307      | Germany |
+| SEVES      | Seven Seas Imports        | Hari Kumar          | 90 Wadhurst Rd.              | London         | OX15 4NB   | UK      |
+| SPECD      | Spcialits du monde        | Dominique Perrier   | 25, rue Lauriston            | Paris          | 75016      | France  |
+| TOMSP      | Toms Spezialitten         | Karin Josephs       | Luisenstr. 48                | Mnster         | 44087      | Germany |
+| VICTE      | Victuailles en stock      | Mary Saveley        | 2, rue du Commerce           | Lyon           | 69004      | France  |
+| VINET      | Vins et alcools Chevalier | Paul Henriot        | 59 rue de l'Abbaye           | Reims          | 51100      | France  |
+| WANDK      | Die Wandernde Kuh         | Rita Mller          | Adenauerallee 900            | Stuttgart      | 70563      | Germany |
++------------+---------------------------+---------------------+------------------------------+----------------+------------+---------+
+29 rows in set (0.00 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country not in ('Germany', 'France', 'UK'
+);
++------------+--------------------------------------+-------------------------+-----------------------------------------------+-----------------+------------+-------------+
+| CustomerID | CompanyName                          | ContactName             | Address                                       | City            | PostalCode | Country     |
++------------+--------------------------------------+-------------------------+-----------------------------------------------+-----------------+------------+-------------+
+| ANATR      | Ana Trujillo Emparedados y helados   | Ana Trujillo            | Avda. de la Constitucin 2222                  | Mxico D.F.      | 05021      | Mexico      |
+| ANTON      | Antonio Moreno Taquera               | Antonio Moreno          | Mataderos  2312                               | Mxico D.F.      | 05023      | Mexico      |
+| BERGS      | Berglunds snabbkp                    | Christina Berglund      | Berguvsvgen  8                                | Lule            | S-958 22   | Sweden      |
+| BOLID      | Blido Comidas preparadas             | Martn Sommer            | C/ Araquil, 67                                | Madrid          | 28023      | Spain       |
+| BOTTM      | Bottom-Dollar Markets                | Elizabeth Lincoln       | 23 Tsawassen Blvd.                            | Tsawassen       | T2F 8M4    | Canada      |
+| CACTU      | Cactus Comidas para llevar           | Patricio Simpson        | Cerrito 333                                   | Buenos Aires    | 1010       | Argentina   |
+| CENTC      | Centro comercial Moctezuma           | Francisco Chang         | Sierras de Granada 9993                       | Mxico D.F.      | 05022      | Mexico      |
+| CHOPS      | Chop-suey Chinese                    | Yang Wang               | Hauptstr. 29                                  | Bern            | 3012       | Switzerland |
+| COMMI      | Comrcio Mineiro                      | Pedro Afonso            | Av. dos Lusadas, 23                           | Sao Paulo       | 05432-043  | Brazil      |
+| ERNSH      | Ernst Handel                         | Roland Mendel           | Kirchgasse 6                                  | Graz            | 8010       | Austria     |
+| FAMIA      | Familia Arquibaldo                   | Aria Cruz               | Rua Ors, 92                                   | Sao Paulo       | 05442-030  | Brazil      |
+| FISSA      | FISSA Fabrica Inter. Salchichas S.A. | Diego Roel              | C/ Moralzarzal, 86                            | Madrid          | 28034      | Spain       |
+| FOLKO      | Folk och f HB                        | Maria Larsson           | kergatan 24                                   | Brcke           | S-844 67   | Sweden      |
+| FRANS      | Franchi S.p.A.                       | Paolo Accorti           | Via Monte Bianco 34                           | Torino          | 10100      | Italy       |
+| FURIB      | Furia Bacalhau e Frutos do Mar       | Lino Rodriguez          | Jardim das rosas n. 32                        | Lisboa          | 1675       | Portugal    |
+| GALED      | Galera del gastrnomo                 | Eduardo Saavedra        | Rambla de Catalua, 23                         | Barcelona       | 08022      | Spain       |
+| GODOS      | Godos Cocina Tpica                   | Jos Pedro Freyre        | C/ Romero, 33                                 | Sevilla         | 41101      | Spain       |
+| GOURL      | Gourmet Lanchonetes                  | Andr Fonseca            | Av. Brasil, 442                               | Campinas        | 04876-786  | Brazil      |
+| GREAL      | Great Lakes Food Market              | Howard Snyder           | 2732 Baker Blvd.                              | Eugene          | 97403      | USA         |
+| GROSR      | GROSELLA-Restaurante                 | Manuel Pereira          | 5 Ave. Los Palos Grandes                      | Caracas         | 1081       | Venezuela   |
+| HANAR      | Hanari Carnes                        | Mario Pontes            | Rua do Pao, 67                                | Rio de Janeiro  | 05454-876  | Brazil      |
+| HEKBU      | Hekkan Burger                        | Jane Doe                | Gatevein 15                                   | Oslo            | 4306       | Norway      |
+| HILAA      | HILARION-Abastos                     | Carlos Hernndez         | Carrera 22 con Ave. Carlos Soublette #8-35    | San Cristbal    | 5022       | Venezuela   |
+| HUNGC      | Hungry Coyote Import Store           | Yoshi Latimer           | City Center Plaza 516 Main St.                | Elgin           | 97827      | USA         |
+| HUNGO      | Hungry Owl All-Night Grocers         | Patricia McKenna        | 8 Johnstown Road                              | Cork            | NULL       | Ireland     |
+| LAUGB      | Laughing Bacchus Wine Cellars        | Yoshi Tannamuri         | 1900 Oak St.                                  | Vancouver       | V3F 2K1    | Canada      |
+| LAZYK      | Lazy K Kountry Store                 | John Steel              | 12 Orchestra Terrace                          | Walla Walla     | 99362      | USA         |
+| LETSS      | Let's Stop N Shop                    | Jaime Yorres            | 87 Polk St. Suite 5                           | San Francisco   | 94117      | USA         |
+| LILAS      | LILA-Supermercado                    | Carlos Gonzlez          | Carrera 52 con Ave. Bolvar #65-98 Llano Largo | Barquisimeto    | 3508       | Venezuela   |
+| LINOD      | LINO-Delicateses                     | Felipe Izquierdo        | Ave. 5 de Mayo Porlamar                       | I. de Margarita | 4980       | Venezuela   |
+| LONEP      | Lonesome Pine Restaurant             | Fran Wilson             | 89 Chiaroscuro Rd.                            | Portland        | 97219      | USA         |
+| MAGAA      | Magazzini Alimentari Riuniti         | Giovanni Rovelli        | Via Ludovico il Moro 22                       | Bergamo         | 24100      | Italy       |
+| MAISD      | Maison Dewey                         | Catherine Dewey         | Rue Joseph-Bens 532                           | Bruxelles       | B-1180     | Belgium     |
+| MEREP      | Mre Paillarde                        | Jean Fresnire           | 43 rue St. Laurent                            | Montral         | H1J 1C3    | Canada      |
+| OCEAN      | Ocano Atlntico Ltda.                 | Yvonne Moncada          | Ing. Gustavo Moncada 8585 Piso 20-A           | Buenos Aires    | 1010       | Argentina   |
+| OLDWO      | Old World Delicatessen               | Rene Phillips           | 2743 Bering St.                               | Anchorage       | 99508      | USA         |
+| PERIC      | Pericles Comidas clsicas             | Guillermo Fernndez      | Calle Dr. Jorge Cash 321                      | Mxico D.F.      | 05033      | Mexico      |
+| PICCO      | Piccolo und mehr                     | Georg Pipps             | Geislweg 14                                   | Salzburg        | 5020       | Austria     |
+| PRINI      | Princesa Isabel Vinhos               | Isabel de Castro        | Estrada da sade n. 58                         | Lisboa          | 1756       | Portugal    |
+| QUEDE      | Que Delcia                           | Bernardo Batista        | Rua da Panificadora, 12                       | Rio de Janeiro  | 02389-673  | Brazil      |
+| QUEEN      | Queen Cozinha                        | Lcia Carvalho           | Alameda dos Canrios, 891                      | Sao Paulo       | 05487-020  | Brazil      |
+| RANCH      | Rancho grande                        | Sergio Gutirrez         | Av. del Libertador 900                        | Buenos Aires    | 1010       | Argentina   |
+| RATTC      | Rattlesnake Canyon Grocery           | Paula Wilson            | 2817 Milton Dr.                               | Albuquerque     | 87110      | USA         |
+| REGGC      | Reggiani Caseifici                   | Maurizio Moroni         | Strada Provinciale 124                        | Reggio Emilia   | 42100      | Italy       |
+| RICAR      | Ricardo Adocicados                   | Janete Limeira          | Av. Copacabana, 267                           | Rio de Janeiro  | 02389-890  | Brazil      |
+| RICSU      | Richter Supermarkt                   | Michael Holz            | Grenzacherweg 237                             | Genve           | 1203       | Switzerland |
+| ROMEY      | Romero y tomillo                     | Alejandra Camino        | Gran Va, 1                                    | Madrid          | 28001      | Spain       |
+| SANTG      | Sant Gourmet                         | Jonas Bergulfsen        | Erling Skakkes gate 78                        | Oslo            | 4110       | Norway      |
+| SAVEA      | Save-a-lot Markets                   | Jose Pavarotti          | 187 Suffolk Ln.                               | Boise           | 83720      | USA         |
+| SIMOB      | Simons bistro                        | Jytte Petersen          | Vinbltet 34                                   | Kobenhavn       | 1734       | Denmark     |
+| SPLIR      | Split Rail Beer & Ale                | Art Braunschweiger      | P.O. Box 555                                  | Lander          | 82520      | USA         |
+| SUPRD      | Suprmes dlices                       | Pascale Cartrain        | Boulevard Tirou, 255                          | Charleroi       | B-6000     | Belgium     |
+| THEBI      | The Big Cheese                       | Liz Nixon               | 89 Jefferson Way Suite 2                      | Portland        | 97201      | USA         |
+| THECR      | The Cracker Box                      | Liu Wong                | 55 Grizzly Peak Rd.                           | Butte           | 59801      | USA         |
+| TORTU      | Tortuga Restaurante                  | Miguel Angel Paolino    | Avda. Azteca 123                              | Mxico D.F.      | 05033      | Mexico      |
+| TRADH      | Tradio Hipermercados                 | Anabela Domingues       | Av. Ins de Castro, 414                        | Sao Paulo       | 05634-030  | Brazil      |
+| TRAIH      | Trail's Head Gourmet Provisioners    | Helvetius Nagy          | 722 DaVinci Blvd.                             | Kirkland        | 98034      | USA         |
+| VAFFE      | Vaffeljernet                         | Palle Ibsen             | Smagsloget 45                                 | rhus            | 8200       | Denmark     |
+| WARTH      | Wartian Herkku                       | Pirkko Koskitalo        | Torikatu 38                                   | Oulu            | 90110      | Finland     |
+| WELLI      | Wellington Importadora               | Paula Parente           | Rua do Mercado, 12                            | Resende         | 08737-363  | Brazil      |
+| WHITC      | White Clover Markets                 | Karl Jablonski          | 305 - 14th Ave. S. Suite 3B                   | Seattle         | 98128      | USA         |
+| WILMK      | Wilman Kala                          | Matti Karttunen         | Keskuskatu 45                                 | Helsinki        | 21240      | Finland     |
+| WOLZA      | Wolski  Zajazd                       | Zbyszek Piestrzeniewicz | ul. Filtrowa 68                               | Warszawa        | 01-012     | Poland      |
++------------+--------------------------------------+-------------------------+-----------------------------------------------+-----------------+------------+-------------+
+63 rows in set (0.00 sec)
+
+mysql> select * from Customers where Country in (select Country from Suppliers) limit 5;
++------------+-------------------------+--------------------+----------------------+-----------------+------------+--------+------------+---------+----------------+----------------+
+| CustomerID | CompanyName             | ContactName        | ContactTitle         | Address         | City       | Region | PostalCode | Country | Phone          | Fax            |
++------------+-------------------------+--------------------+----------------------+-----------------+------------+--------+------------+---------+----------------+----------------+
+| ALFKI      | Alfreds Futterkiste     | Maria Anders       | Sales Representative | Obere Str. 57   | Berlin     | NULL   | 12209      | Germany | 030-0074321    | 030-0076545    |
+| AROUT      | Around the Horn         | Thomas Hardy       | Sales Representative | 120 Hanover Sq. | London     | NULL   | WA1 1DP    | UK      | (171) 555-7788 | (171) 555-6750 |
+| BERGS      | Berglunds snabbkp       | Christina Berglund | Order Administrator  | Berguvsvgen  8  | Lule       | NULL   | S-958 22   | Sweden  | 0921-12 34 65  | 0921-12 34 67  |
+| BLAUS      | Blauer See Delikatessen | Hanna Moos         | Sales Representative | Forsterstr. 57  | Mannheim   | NULL   | 68306      | Germany | 0621-08460     | 0621-08924     |
+| BLONP      | Blondesddsl pre et fils | Frdrique Citeaux   | Marketing Manager    | 24, place Klber | Strasbourg | NULL   | 67000      | France  | 88.60.15.31    | 88.60.15.32    |
++------------+-------------------------+--------------------+----------------------+-----------------+------------+--------+------------+---------+----------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> #select all the records where Country is either "Norway" or "France"#
+mysql> select * from Customers where Country in ('Norway', 'France') limit 5;
++------------+-------------------------+------------------+-----------------------+------------------------------+------------+--------+------------+---------+-------------+-------------+
+| CustomerID | CompanyName             | ContactName      | ContactTitle          | Address                      | City       | Region | PostalCode | Country | Phone       | Fax         |
++------------+-------------------------+------------------+-----------------------+------------------------------+------------+--------+------------+---------+-------------+-------------+
+| BLONP      | Blondesddsl pre et fils | Frdrique Citeaux | Marketing Manager     | 24, place Klber              | Strasbourg | NULL   | 67000      | France  | 88.60.15.31 | 88.60.15.32 |
+| BONAP      | Bon app'                | Laurence Lebihan | Owner                 | 12, rue des Bouchers         | Marseille  | NULL   | 13008      | France  | 91.24.45.40 | 91.24.45.41 |
+| DUMON      | Du monde entier         | Janine Labrune   | Owner                 | 67, rue des Cinquante Otages | Nantes     | NULL   | 44000      | France  | 40.67.88.88 | 40.67.89.89 |
+| FOLIG      | Folies gourmandes       | Martine Ranc     | Assistant Sales Agent | 184, chausse de Tournai      | Lille      | NULL   | 59000      | France  | 20.16.10.16 | 20.16.10.17 |
+| FRANR      | France restauration     | Carine Schmitt   | Marketing Manager     | 54, rue Royale               | Nantes     | NULL   | 44000      | France  | 40.32.21.21 | 40.32.21.20 |
++------------+-------------------------+------------------+-----------------------+------------------------------+------------+--------+------------+---------+-------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Customers where Country in ('Norway', 'France') limit 10;
++------------+-------------------------+------------------+-----------------------+------------------------------+------------+--------+------------+---------+-----------------+-----------------+
+| CustomerID | CompanyName             | ContactName      | ContactTitle          | Address                      | City       | Region | PostalCode | Country | Phone           | Fax             |
++------------+-------------------------+------------------+-----------------------+------------------------------+------------+--------+------------+---------+-----------------+-----------------+
+| BLONP      | Blondesddsl pre et fils | Frdrique Citeaux | Marketing Manager     | 24, place Klber              | Strasbourg | NULL   | 67000      | France  | 88.60.15.31     | 88.60.15.32     |
+| BONAP      | Bon app'                | Laurence Lebihan | Owner                 | 12, rue des Bouchers         | Marseille  | NULL   | 13008      | France  | 91.24.45.40     | 91.24.45.41     |
+| DUMON      | Du monde entier         | Janine Labrune   | Owner                 | 67, rue des Cinquante Otages | Nantes     | NULL   | 44000      | France  | 40.67.88.88     | 40.67.89.89     |
+| FOLIG      | Folies gourmandes       | Martine Ranc     | Assistant Sales Agent | 184, chausse de Tournai      | Lille      | NULL   | 59000      | France  | 20.16.10.16     | 20.16.10.17     |
+| FRANR      | France restauration     | Carine Schmitt   | Marketing Manager     | 54, rue Royale               | Nantes     | NULL   | 44000      | France  | 40.32.21.21     | 40.32.21.20     |
+| HEKBU      | Hekkan Burger           | Jane Doe         | NULL                  | Gatevein 15                  | Oslo       | NULL   | 4306       | Norway  | NULL            | NULL            |
+| LACOR      | La corne d'abondance    | Daniel Tonini    | Sales Representative  | 67, avenue de l'Europe       | Versailles | NULL   | 78000      | France  | 30.59.84.10     | 30.59.85.11     |
+| LAMAI      | La maison d'Asie        | Annette Roulet   | Sales Manager         | 1 rue Alsace-Lorraine        | Toulouse   | NULL   | 31000      | France  | 61.77.61.10     | 61.77.61.11     |
+| PARIS      | Paris spcialits         | Marie Bertrand   | Owner                 | 265, boulevard Charonne      | Paris      | NULL   | 75012      | France  | (1) 42.34.22.66 | (1) 42.34.22.77 |
+| SANTG      | Sant Gourmet            | Jonas Bergulfsen | Owner                 | Erling Skakkes gate 78       | Oslo       | NULL   | 4110       | Norway  | 07-98 92 35     | 07-98 92 47     |
++------------+-------------------------+------------------+-----------------------+------------------------------+------------+--------+------------+---------+-----------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Customers where Country in ('Norway', 'France');
++------------+---------------------------+-------------------+-----------------------+------------------------------+------------+--------+------------+---------+-----------------+-----------------+
+| CustomerID | CompanyName               | ContactName       | ContactTitle          | Address                      | City       | Region | PostalCode | Country | Phone           | Fax             |
++------------+---------------------------+-------------------+-----------------------+------------------------------+------------+--------+------------+---------+-----------------+-----------------+
+| BLONP      | Blondesddsl pre et fils   | Frdrique Citeaux  | Marketing Manager     | 24, place Klber              | Strasbourg | NULL   | 67000      | France  | 88.60.15.31     | 88.60.15.32     |
+| BONAP      | Bon app'                  | Laurence Lebihan  | Owner                 | 12, rue des Bouchers         | Marseille  | NULL   | 13008      | France  | 91.24.45.40     | 91.24.45.41     |
+| DUMON      | Du monde entier           | Janine Labrune    | Owner                 | 67, rue des Cinquante Otages | Nantes     | NULL   | 44000      | France  | 40.67.88.88     | 40.67.89.89     |
+| FOLIG      | Folies gourmandes         | Martine Ranc      | Assistant Sales Agent | 184, chausse de Tournai      | Lille      | NULL   | 59000      | France  | 20.16.10.16     | 20.16.10.17     |
+| FRANR      | France restauration       | Carine Schmitt    | Marketing Manager     | 54, rue Royale               | Nantes     | NULL   | 44000      | France  | 40.32.21.21     | 40.32.21.20     |
+| HEKBU      | Hekkan Burger             | Jane Doe          | NULL                  | Gatevein 15                  | Oslo       | NULL   | 4306       | Norway  | NULL            | NULL            |
+| LACOR      | La corne d'abondance      | Daniel Tonini     | Sales Representative  | 67, avenue de l'Europe       | Versailles | NULL   | 78000      | France  | 30.59.84.10     | 30.59.85.11     |
+| LAMAI      | La maison d'Asie          | Annette Roulet    | Sales Manager         | 1 rue Alsace-Lorraine        | Toulouse   | NULL   | 31000      | France  | 61.77.61.10     | 61.77.61.11     |
+| PARIS      | Paris spcialits           | Marie Bertrand    | Owner                 | 265, boulevard Charonne      | Paris      | NULL   | 75012      | France  | (1) 42.34.22.66 | (1) 42.34.22.77 |
+| SANTG      | Sant Gourmet              | Jonas Bergulfsen  | Owner                 | Erling Skakkes gate 78       | Oslo       | NULL   | 4110       | Norway  | 07-98 92 35     | 07-98 92 47     |
+| SPECD      | Spcialits du monde        | Dominique Perrier | Marketing Manager     | 25, rue Lauriston            | Paris      | NULL   | 75016      | France  | (1) 47.55.60.10 | (1) 47.55.60.20 |
+| VICTE      | Victuailles en stock      | Mary Saveley      | Sales Agent           | 2, rue du Commerce           | Lyon       | NULL   | 69004      | France  | 78.32.54.86     | 78.32.54.87     |
+| VINET      | Vins et alcools Chevalier | Paul Henriot      | Accounting Manager    | 59 rue de l'Abbaye           | Reims      | NULL   | 51100      | France  | 26.47.15.10     | 26.47.15.11     |
++------------+---------------------------+-------------------+-----------------------+------------------------------+------------+--------+------------+---------+-----------------+-----------------+
+13 rows in set (0.00 sec)
+
+mysql> #select all the records where Country is NOT "Norway" and NOT "France"#
+mysql> select * from Customers where Country not in ('Norway', 'France') limit 10;
++------------+------------------------------------+--------------------+----------------------+------------------------------+--------------+--------+------------+-----------+----------------+----------------+
+| CustomerID | CompanyName                        | ContactName        | ContactTitle         | Address                      | City         | Region | PostalCode | Country   | Phone          | Fax            |
++------------+------------------------------------+--------------------+----------------------+------------------------------+--------------+--------+------------+-----------+----------------+----------------+
+| ALFKI      | Alfreds Futterkiste                | Maria Anders       | Sales Representative | Obere Str. 57                | Berlin       | NULL   | 12209      | Germany   | 030-0074321    | 030-0076545    |
+| ANATR      | Ana Trujillo Emparedados y helados | Ana Trujillo       | Owner                | Avda. de la Constitucin 2222 | Mxico D.F.   | NULL   | 05021      | Mexico    | (5) 555-4729   | (5) 555-3745   |
+| ANTON      | Antonio Moreno Taquera             | Antonio Moreno     | Owner                | Mataderos  2312              | Mxico D.F.   | NULL   | 05023      | Mexico    | (5) 555-3932   | NULL           |
+| AROUT      | Around the Horn                    | Thomas Hardy       | Sales Representative | 120 Hanover Sq.              | London       | NULL   | WA1 1DP    | UK        | (171) 555-7788 | (171) 555-6750 |
+| BERGS      | Berglunds snabbkp                  | Christina Berglund | Order Administrator  | Berguvsvgen  8               | Lule         | NULL   | S-958 22   | Sweden    | 0921-12 34 65  | 0921-12 34 67  |
+| BLAUS      | Blauer See Delikatessen            | Hanna Moos         | Sales Representative | Forsterstr. 57               | Mannheim     | NULL   | 68306      | Germany   | 0621-08460     | 0621-08924     |
+| BOLID      | Blido Comidas preparadas           | Martn Sommer       | Owner                | C/ Araquil, 67               | Madrid       | NULL   | 28023      | Spain     | (91) 555 22 82 | (91) 555 91 99 |
+| BOTTM      | Bottom-Dollar Markets              | Elizabeth Lincoln  | Accounting Manager   | 23 Tsawassen Blvd.           | Tsawassen    | BC     | T2F 8M4    | Canada    | (604) 555-4729 | (604) 555-3745 |
+| BSBEV      | B's Beverages                      | Victoria Ashworth  | Sales Representative | Fauntleroy Circus            | London       | NULL   | EC2 5NT    | UK        | (171) 555-1212 | NULL           |
+| CACTU      | Cactus Comidas para llevar         | Patricio Simpson   | Sales Agent          | Cerrito 333                  | Buenos Aires | NULL   | 1010       | Argentina | (1) 135-5555   | (1) 135-4892   |
++------------+------------------------------------+--------------------+----------------------+------------------------------+--------------+--------+------------+-----------+----------------+----------------+
+10 rows in set (0.00 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country not in ('Norway', 'France');
++------------+--------------------------------------+-------------------------+-----------------------------------------------+-----------------+------------+-------------+
+| CustomerID | CompanyName                          | ContactName             | Address                                       | City            | PostalCode | Country     |
++------------+--------------------------------------+-------------------------+-----------------------------------------------+-----------------+------------+-------------+
+| ALFKI      | Alfreds Futterkiste                  | Maria Anders            | Obere Str. 57                                 | Berlin          | 12209      | Germany     |
+| ANATR      | Ana Trujillo Emparedados y helados   | Ana Trujillo            | Avda. de la Constitucin 2222                  | Mxico D.F.      | 05021      | Mexico      |
+| ANTON      | Antonio Moreno Taquera               | Antonio Moreno          | Mataderos  2312                               | Mxico D.F.      | 05023      | Mexico      |
+| AROUT      | Around the Horn                      | Thomas Hardy            | 120 Hanover Sq.                               | London          | WA1 1DP    | UK          |
+| BERGS      | Berglunds snabbkp                    | Christina Berglund      | Berguvsvgen  8                                | Lule            | S-958 22   | Sweden      |
+| BLAUS      | Blauer See Delikatessen              | Hanna Moos              | Forsterstr. 57                                | Mannheim        | 68306      | Germany     |
+| BOLID      | Blido Comidas preparadas             | Martn Sommer            | C/ Araquil, 67                                | Madrid          | 28023      | Spain       |
+| BOTTM      | Bottom-Dollar Markets                | Elizabeth Lincoln       | 23 Tsawassen Blvd.                            | Tsawassen       | T2F 8M4    | Canada      |
+| BSBEV      | B's Beverages                        | Victoria Ashworth       | Fauntleroy Circus                             | London          | EC2 5NT    | UK          |
+| CACTU      | Cactus Comidas para llevar           | Patricio Simpson        | Cerrito 333                                   | Buenos Aires    | 1010       | Argentina   |
+| CENTC      | Centro comercial Moctezuma           | Francisco Chang         | Sierras de Granada 9993                       | Mxico D.F.      | 05022      | Mexico      |
+| CHOPS      | Chop-suey Chinese                    | Yang Wang               | Hauptstr. 29                                  | Bern            | 3012       | Switzerland |
+| COMMI      | Comrcio Mineiro                      | Pedro Afonso            | Av. dos Lusadas, 23                           | Sao Paulo       | 05432-043  | Brazil      |
+| CONSH      | Consolidated Holdings                | Elizabeth Brown         | Berkeley Gardens 12  Brewery                  | London          | WX1 6LT    | UK          |
+| DRACD      | Drachenblut Delikatessen             | Sven Ottlieb            | Walserweg 21                                  | Aachen          | 52066      | Germany     |
+| EASTC      | Eastern Connection                   | Ann Devon               | 35 King George                                | London          | WX3 6FW    | UK          |
+| ERNSH      | Ernst Handel                         | Roland Mendel           | Kirchgasse 6                                  | Graz            | 8010       | Austria     |
+| FAMIA      | Familia Arquibaldo                   | Aria Cruz               | Rua Ors, 92                                   | Sao Paulo       | 05442-030  | Brazil      |
+| FISSA      | FISSA Fabrica Inter. Salchichas S.A. | Diego Roel              | C/ Moralzarzal, 86                            | Madrid          | 28034      | Spain       |
+| FOLKO      | Folk och f HB                        | Maria Larsson           | kergatan 24                                   | Brcke           | S-844 67   | Sweden      |
+| FRANK      | Frankenversand                       | Peter Franken           | Berliner Platz 43                             | Mnchen          | 80805      | Germany     |
+| FRANS      | Franchi S.p.A.                       | Paolo Accorti           | Via Monte Bianco 34                           | Torino          | 10100      | Italy       |
+| FURIB      | Furia Bacalhau e Frutos do Mar       | Lino Rodriguez          | Jardim das rosas n. 32                        | Lisboa          | 1675       | Portugal    |
+| GALED      | Galera del gastrnomo                 | Eduardo Saavedra        | Rambla de Catalua, 23                         | Barcelona       | 08022      | Spain       |
+| GODOS      | Godos Cocina Tpica                   | Jos Pedro Freyre        | C/ Romero, 33                                 | Sevilla         | 41101      | Spain       |
+| GOURL      | Gourmet Lanchonetes                  | Andr Fonseca            | Av. Brasil, 442                               | Campinas        | 04876-786  | Brazil      |
+| GREAL      | Great Lakes Food Market              | Howard Snyder           | 2732 Baker Blvd.                              | Eugene          | 97403      | USA         |
+| GROSR      | GROSELLA-Restaurante                 | Manuel Pereira          | 5 Ave. Los Palos Grandes                      | Caracas         | 1081       | Venezuela   |
+| HANAR      | Hanari Carnes                        | Mario Pontes            | Rua do Pao, 67                                | Rio de Janeiro  | 05454-876  | Brazil      |
+| HILAA      | HILARION-Abastos                     | Carlos Hernndez         | Carrera 22 con Ave. Carlos Soublette #8-35    | San Cristbal    | 5022       | Venezuela   |
+| HUNGC      | Hungry Coyote Import Store           | Yoshi Latimer           | City Center Plaza 516 Main St.                | Elgin           | 97827      | USA         |
+| HUNGO      | Hungry Owl All-Night Grocers         | Patricia McKenna        | 8 Johnstown Road                              | Cork            | NULL       | Ireland     |
+| ISLAT      | Island Trading                       | Helen Bennett           | Garden House Crowther Way                     | Cowes           | PO31 7PJ   | UK          |
+| KOENE      | Kniglich Essen                       | Philip Cramer           | Maubelstr. 90                                 | Brandenburg     | 14776      | Germany     |
+| LAUGB      | Laughing Bacchus Wine Cellars        | Yoshi Tannamuri         | 1900 Oak St.                                  | Vancouver       | V3F 2K1    | Canada      |
+| LAZYK      | Lazy K Kountry Store                 | John Steel              | 12 Orchestra Terrace                          | Walla Walla     | 99362      | USA         |
+| LEHMS      | Lehmanns Marktstand                  | Renate Messner          | Magazinweg 7                                  | Frankfurt a.M.  | 60528      | Germany     |
+| LETSS      | Let's Stop N Shop                    | Jaime Yorres            | 87 Polk St. Suite 5                           | San Francisco   | 94117      | USA         |
+| LILAS      | LILA-Supermercado                    | Carlos Gonzlez          | Carrera 52 con Ave. Bolvar #65-98 Llano Largo | Barquisimeto    | 3508       | Venezuela   |
+| LINOD      | LINO-Delicateses                     | Felipe Izquierdo        | Ave. 5 de Mayo Porlamar                       | I. de Margarita | 4980       | Venezuela   |
+| LONEP      | Lonesome Pine Restaurant             | Fran Wilson             | 89 Chiaroscuro Rd.                            | Portland        | 97219      | USA         |
+| MAGAA      | Magazzini Alimentari Riuniti         | Giovanni Rovelli        | Via Ludovico il Moro 22                       | Bergamo         | 24100      | Italy       |
+| MAISD      | Maison Dewey                         | Catherine Dewey         | Rue Joseph-Bens 532                           | Bruxelles       | B-1180     | Belgium     |
+| MEREP      | Mre Paillarde                        | Jean Fresnire           | 43 rue St. Laurent                            | Montral         | H1J 1C3    | Canada      |
+| MORGK      | Morgenstern Gesundkost               | Alexander Feuer         | Heerstr. 22                                   | Leipzig         | 04179      | Germany     |
+| NORTS      | North/South                          | Simon Crowther          | South House 300 Queensbridge                  | London          | SW7 1RZ    | UK          |
+| OCEAN      | Ocano Atlntico Ltda.                 | Yvonne Moncada          | Ing. Gustavo Moncada 8585 Piso 20-A           | Buenos Aires    | 1010       | Argentina   |
+| OLDWO      | Old World Delicatessen               | Rene Phillips           | 2743 Bering St.                               | Anchorage       | 99508      | USA         |
+| OTTIK      | Ottilies Kseladen                    | Henriette Pfalzheim     | Mehrheimerstr. 369                            | Kln             | 50739      | Germany     |
+| PERIC      | Pericles Comidas clsicas             | Guillermo Fernndez      | Calle Dr. Jorge Cash 321                      | Mxico D.F.      | 05033      | Mexico      |
+| PICCO      | Piccolo und mehr                     | Georg Pipps             | Geislweg 14                                   | Salzburg        | 5020       | Austria     |
+| PRINI      | Princesa Isabel Vinhos               | Isabel de Castro        | Estrada da sade n. 58                         | Lisboa          | 1756       | Portugal    |
+| QUEDE      | Que Delcia                           | Bernardo Batista        | Rua da Panificadora, 12                       | Rio de Janeiro  | 02389-673  | Brazil      |
+| QUEEN      | Queen Cozinha                        | Lcia Carvalho           | Alameda dos Canrios, 891                      | Sao Paulo       | 05487-020  | Brazil      |
+| QUICK      | QUICK-Stop                           | Horst Kloss             | Taucherstrae 10                               | Cunewalde       | 01307      | Germany     |
+| RANCH      | Rancho grande                        | Sergio Gutirrez         | Av. del Libertador 900                        | Buenos Aires    | 1010       | Argentina   |
+| RATTC      | Rattlesnake Canyon Grocery           | Paula Wilson            | 2817 Milton Dr.                               | Albuquerque     | 87110      | USA         |
+| REGGC      | Reggiani Caseifici                   | Maurizio Moroni         | Strada Provinciale 124                        | Reggio Emilia   | 42100      | Italy       |
+| RICAR      | Ricardo Adocicados                   | Janete Limeira          | Av. Copacabana, 267                           | Rio de Janeiro  | 02389-890  | Brazil      |
+| RICSU      | Richter Supermarkt                   | Michael Holz            | Grenzacherweg 237                             | Genve           | 1203       | Switzerland |
+| ROMEY      | Romero y tomillo                     | Alejandra Camino        | Gran Va, 1                                    | Madrid          | 28001      | Spain       |
+| SAVEA      | Save-a-lot Markets                   | Jose Pavarotti          | 187 Suffolk Ln.                               | Boise           | 83720      | USA         |
+| SEVES      | Seven Seas Imports                   | Hari Kumar              | 90 Wadhurst Rd.                               | London          | OX15 4NB   | UK          |
+| SIMOB      | Simons bistro                        | Jytte Petersen          | Vinbltet 34                                   | Kobenhavn       | 1734       | Denmark     |
+| SPLIR      | Split Rail Beer & Ale                | Art Braunschweiger      | P.O. Box 555                                  | Lander          | 82520      | USA         |
+| SUPRD      | Suprmes dlices                       | Pascale Cartrain        | Boulevard Tirou, 255                          | Charleroi       | B-6000     | Belgium     |
+| THEBI      | The Big Cheese                       | Liz Nixon               | 89 Jefferson Way Suite 2                      | Portland        | 97201      | USA         |
+| THECR      | The Cracker Box                      | Liu Wong                | 55 Grizzly Peak Rd.                           | Butte           | 59801      | USA         |
+| TOMSP      | Toms Spezialitten                    | Karin Josephs           | Luisenstr. 48                                 | Mnster          | 44087      | Germany     |
+| TORTU      | Tortuga Restaurante                  | Miguel Angel Paolino    | Avda. Azteca 123                              | Mxico D.F.      | 05033      | Mexico      |
+| TRADH      | Tradio Hipermercados                 | Anabela Domingues       | Av. Ins de Castro, 414                        | Sao Paulo       | 05634-030  | Brazil      |
+| TRAIH      | Trail's Head Gourmet Provisioners    | Helvetius Nagy          | 722 DaVinci Blvd.                             | Kirkland        | 98034      | USA         |
+| VAFFE      | Vaffeljernet                         | Palle Ibsen             | Smagsloget 45                                 | rhus            | 8200       | Denmark     |
+| WANDK      | Die Wandernde Kuh                    | Rita Mller              | Adenauerallee 900                             | Stuttgart       | 70563      | Germany     |
+| WARTH      | Wartian Herkku                       | Pirkko Koskitalo        | Torikatu 38                                   | Oulu            | 90110      | Finland     |
+| WELLI      | Wellington Importadora               | Paula Parente           | Rua do Mercado, 12                            | Resende         | 08737-363  | Brazil      |
+| WHITC      | White Clover Markets                 | Karl Jablonski          | 305 - 14th Ave. S. Suite 3B                   | Seattle         | 98128      | USA         |
+| WILMK      | Wilman Kala                          | Matti Karttunen         | Keskuskatu 45                                 | Helsinki        | 21240      | Finland     |
+| WOLZA      | Wolski  Zajazd                       | Zbyszek Piestrzeniewicz | ul. Filtrowa 68                               | Warszawa        | 01-012     | Poland      |
++------------+--------------------------------------+-------------------------+-----------------------------------------------+-----------------+------------+-------------+
+79 rows in set (0.00 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country not in ('Norway', 'France') limit 10;
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+| CustomerID | CompanyName                        | ContactName        | Address                      | City         | PostalCode | Country   |
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+| ALFKI      | Alfreds Futterkiste                | Maria Anders       | Obere Str. 57                | Berlin       | 12209      | Germany   |
+| ANATR      | Ana Trujillo Emparedados y helados | Ana Trujillo       | Avda. de la Constitucin 2222 | Mxico D.F.   | 05021      | Mexico    |
+| ANTON      | Antonio Moreno Taquera             | Antonio Moreno     | Mataderos  2312              | Mxico D.F.   | 05023      | Mexico    |
+| AROUT      | Around the Horn                    | Thomas Hardy       | 120 Hanover Sq.              | London       | WA1 1DP    | UK        |
+| BERGS      | Berglunds snabbkp                  | Christina Berglund | Berguvsvgen  8               | Lule         | S-958 22   | Sweden    |
+| BLAUS      | Blauer See Delikatessen            | Hanna Moos         | Forsterstr. 57               | Mannheim     | 68306      | Germany   |
+| BOLID      | Blido Comidas preparadas           | Martn Sommer       | C/ Araquil, 67               | Madrid       | 28023      | Spain     |
+| BOTTM      | Bottom-Dollar Markets              | Elizabeth Lincoln  | 23 Tsawassen Blvd.           | Tsawassen    | T2F 8M4    | Canada    |
+| BSBEV      | B's Beverages                      | Victoria Ashworth  | Fauntleroy Circus            | London       | EC2 5NT    | UK        |
+| CACTU      | Cactus Comidas para llevar         | Patricio Simpson   | Cerrito 333                  | Buenos Aires | 1010       | Argentina |
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Products where UnitPrice between 10 and 20;
++-----------+-------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                   | SupplierID | CategoryID | QuantityPerUnit     | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+-------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+|         1 | Chai                          |          1 |          1 | 10 boxes x 20 bags  |   18.0000 |           39 |            0 |           10 | 0x00                       |
+|         2 | Chang                         |          1 |          1 | 24 - 12 oz bottles  |   19.0000 |           17 |           40 |           25 | 0x00                       |
+|         3 | Aniseed Syrup                 |          1 |          2 | 12 - 550 ml bottles |   10.0000 |           13 |           70 |           25 | 0x00                       |
+|        15 | Genen Shouyu                  |          6 |          2 | 24 - 250 ml bottles |   15.5000 |           39 |            0 |            5 | 0x00                       |
+|        16 | Pavlova                       |          7 |          3 | 32 - 500 g boxes    |   17.4500 |           29 |            0 |           10 | 0x00                       |
+|        21 | Sir Rodney's Scones           |          8 |          3 | 24 pkgs. x 4 pieces |   10.0000 |            3 |           40 |            5 | 0x00                       |
+|        25 | NuNuCa Nu-Nougat-Creme        |         11 |          3 | 20 - 450 g glasses  |   14.0000 |           76 |            0 |           30 | 0x00                       |
+|        31 | Gorgonzola Telino             |         14 |          4 | 12 - 100 g pkgs     |   12.5000 |            0 |           70 |           20 | 0x00                       |
+|        34 | Sasquatch Ale                 |         16 |          1 | 24 - 12 oz bottles  |   14.0000 |          111 |            0 |           15 | 0x00                       |
+|        35 | Steeleye Stout                |         16 |          1 | 24 - 12 oz bottles  |   18.0000 |           20 |            0 |           15 | 0x00                       |
+|        36 | Inlagd Sill                   |         17 |          8 | 24 - 250 g  jars    |   19.0000 |          112 |            0 |           20 | 0x00                       |
+|        39 | Chartreuse verte              |         18 |          1 | 750 cc per bottle   |   18.0000 |           69 |            0 |            5 | 0x00                       |
+|        40 | Boston Crab Meat              |         19 |          8 | 24 - 4 oz tins      |   18.4000 |          123 |            0 |           30 | 0x00                       |
+|        42 | Singaporean Hokkien Fried Mee |         20 |          5 | 32 - 1 kg pkgs.     |   14.0000 |           26 |            0 |            0 | 0x01                       |
+|        44 | Gula Malacca                  |         20 |          2 | 20 - 2 kg bags      |   19.4500 |           27 |            0 |           15 | 0x00                       |
+|        46 | Spegesild                     |         21 |          8 | 4 - 450 g glasses   |   12.0000 |           95 |            0 |            0 | 0x00                       |
+|        48 | Chocolade                     |         22 |          3 | 10 pkgs.            |   12.7500 |           15 |           70 |           25 | 0x00                       |
+|        49 | Maxilaku                      |         23 |          3 | 24 - 50 g pkgs.     |   20.0000 |           10 |           60 |           15 | 0x00                       |
+|        50 | Valkoinen suklaa              |         23 |          3 | 12 - 100 g bars     |   16.2500 |           65 |            0 |           30 | 0x00                       |
+|        57 | Ravioli Angelo                |         26 |          5 | 24 - 250 g pkgs.    |   19.5000 |           36 |            0 |           20 | 0x00                       |
+|        58 | Escargots de Bourgogne        |         27 |          8 | 24 pieces           |   13.2500 |           62 |            0 |           20 | 0x00                       |
+|        66 | Louisiana Hot Spiced Okra     |          2 |          2 | 24 - 8 oz jars      |   17.0000 |            4 |          100 |           20 | 0x00                       |
+|        67 | Laughing Lumberjack Lager     |         16 |          1 | 24 - 12 oz bottles  |   14.0000 |           52 |            0 |           10 | 0x00                       |
+|        68 | Scottish Longbreads           |          8 |          3 | 10 boxes x 8 pieces |   12.5000 |            6 |           10 |           15 | 0x00                       |
+|        70 | Outback Lager                 |          7 |          1 | 24 - 355 ml bottles |   15.0000 |           15 |           10 |           30 | 0x00                       |
+|        73 | Rd Kaviar                     |         17 |          8 | 24 - 150 g jars     |   15.0000 |          101 |            0 |            5 | 0x00                       |
+|        74 | Longlife Tofu                 |          4 |          7 | 5 kg pkg.           |   10.0000 |            4 |           20 |            5 | 0x00                       |
+|        76 | Lakkalikri                    |         23 |          1 | 500 ml              |   18.0000 |           57 |            0 |           20 | 0x00                       |
+|        77 | Original Frankfurter grne Soe |         12 |          2 | 12 boxes            |   13.0000 |           32 |            0 |           15 | 0x00                       |
++-----------+-------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+29 rows in set (0.00 sec)
+
+mysql> select * from Products where UnitPrice not between 10 and 20;
++-----------+----------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                      | SupplierID | CategoryID | QuantityPerUnit      | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+----------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+|         4 | Chef Anton's Cajun Seasoning     |          2 |          2 | 48 - 6 oz jars       |   22.0000 |           53 |            0 |            0 | 0x00                       |
+|         5 | Chef Anton's Gumbo Mix           |          2 |          2 | 36 boxes             |   21.3500 |            0 |            0 |            0 | 0x01                       |
+|         6 | Grandma's Boysenberry Spread     |          3 |          2 | 12 - 8 oz jars       |   25.0000 |          120 |            0 |           25 | 0x00                       |
+|         7 | Uncle Bob's Organic Dried Pears  |          3 |          7 | 12 - 1 lb pkgs.      |   30.0000 |           15 |            0 |           10 | 0x00                       |
+|         8 | Northwoods Cranberry Sauce       |          3 |          2 | 12 - 12 oz jars      |   40.0000 |            6 |            0 |            0 | 0x00                       |
+|         9 | Mishi Kobe Niku                  |          4 |          6 | 18 - 500 g pkgs.     |   97.0000 |           29 |            0 |            0 | 0x01                       |
+|        10 | Ikura                            |          4 |          8 | 12 - 200 ml jars     |   31.0000 |           31 |            0 |            0 | 0x00                       |
+|        11 | Queso Cabrales                   |          5 |          4 | 1 kg pkg.            |   21.0000 |           22 |           30 |           30 | 0x00                       |
+|        12 | Queso Manchego La Pastora        |          5 |          4 | 10 - 500 g pkgs.     |   38.0000 |           86 |            0 |            0 | 0x00                       |
+|        13 | Konbu                            |          6 |          8 | 2 kg box             |    6.0000 |           24 |            0 |            5 | 0x00                       |
+|        14 | Tofu                             |          6 |          7 | 40 - 100 g pkgs.     |   23.2500 |           35 |            0 |            0 | 0x00                       |
+|        17 | Alice Mutton                     |          7 |          6 | 20 - 1 kg tins       |   39.0000 |            0 |            0 |            0 | 0x01                       |
+|        18 | Carnarvon Tigers                 |          7 |          8 | 16 kg pkg.           |   62.5000 |           42 |            0 |            0 | 0x00                       |
+|        19 | Teatime Chocolate Biscuits       |          8 |          3 | 10 boxes x 12 pieces |    9.2000 |           25 |            0 |            5 | 0x00                       |
+|        20 | Sir Rodney's Marmalade           |          8 |          3 | 30 gift boxes        |   81.0000 |           40 |            0 |            0 | 0x00                       |
+|        22 | Gustaf's Knckebrd                |          9 |          5 | 24 - 500 g pkgs.     |   21.0000 |          104 |            0 |           25 | 0x00                       |
+|        23 | Tunnbrd                          |          9 |          5 | 12 - 250 g pkgs.     |    9.0000 |           61 |            0 |           25 | 0x00                       |
+|        24 | Guaran Fantstica                 |         10 |          1 | 12 - 355 ml cans     |    4.5000 |           20 |            0 |            0 | 0x01                       |
+|        26 | Gumbr Gummibrchen                |         11 |          3 | 100 - 250 g bags     |   31.2300 |           15 |            0 |            0 | 0x00                       |
+|        27 | Schoggi Schokolade               |         11 |          3 | 100 - 100 g pieces   |   43.9000 |           49 |            0 |           30 | 0x00                       |
+|        28 | Rssle Sauerkraut                 |         12 |          7 | 25 - 825 g cans      |   45.6000 |           26 |            0 |            0 | 0x01                       |
+|        29 | Thringer Rostbratwurst           |         12 |          6 | 50 bags x 30 sausgs. |  123.7900 |            0 |            0 |            0 | 0x01                       |
+|        30 | Nord-Ost Matjeshering            |         13 |          8 | 10 - 200 g glasses   |   25.8900 |           10 |            0 |           15 | 0x00                       |
+|        32 | Mascarpone Fabioli               |         14 |          4 | 24 - 200 g pkgs.     |   32.0000 |            9 |           40 |           25 | 0x00                       |
+|        33 | Geitost                          |         15 |          4 | 500 g                |    2.5000 |          112 |            0 |           20 | 0x00                       |
+|        37 | Gravad lax                       |         17 |          8 | 12 - 500 g pkgs.     |   26.0000 |           11 |           50 |           25 | 0x00                       |
+|        38 | Cte de Blaye                     |         18 |          1 | 12 - 75 cl bottles   |  263.5000 |           17 |            0 |           15 | 0x00                       |
+|        41 | Jack's New England Clam Chowder  |         19 |          8 | 12 - 12 oz cans      |    9.6500 |           85 |            0 |           10 | 0x00                       |
+|        43 | Ipoh Coffee                      |         20 |          1 | 16 - 500 g tins      |   46.0000 |           17 |           10 |           25 | 0x00                       |
+|        45 | Rogede sild                      |         21 |          8 | 1k pkg.              |    9.5000 |            5 |           70 |           15 | 0x00                       |
+|        47 | Zaanse koeken                    |         22 |          3 | 10 - 4 oz boxes      |    9.5000 |           36 |            0 |            0 | 0x00                       |
+|        51 | Manjimup Dried Apples            |         24 |          7 | 50 - 300 g pkgs.     |   53.0000 |           20 |            0 |           10 | 0x00                       |
+|        52 | Filo Mix                         |         24 |          5 | 16 - 2 kg boxes      |    7.0000 |           38 |            0 |           25 | 0x00                       |
+|        53 | Perth Pasties                    |         24 |          6 | 48 pieces            |   32.8000 |            0 |            0 |            0 | 0x01                       |
+|        54 | Tourtire                         |         25 |          6 | 16 pies              |    7.4500 |           21 |            0 |           10 | 0x00                       |
+|        55 | Pt chinois                       |         25 |          6 | 24 boxes x 2 pies    |   24.0000 |          115 |            0 |           20 | 0x00                       |
+|        56 | Gnocchi di nonna Alice           |         26 |          5 | 24 - 250 g pkgs.     |   38.0000 |           21 |           10 |           30 | 0x00                       |
+|        59 | Raclette Courdavault             |         28 |          4 | 5 kg pkg.            |   55.0000 |           79 |            0 |            0 | 0x00                       |
+|        60 | Camembert Pierrot                |         28 |          4 | 15 - 300 g rounds    |   34.0000 |           19 |            0 |            0 | 0x00                       |
+|        61 | Sirop d'rable                    |         29 |          2 | 24 - 500 ml bottles  |   28.5000 |          113 |            0 |           25 | 0x00                       |
+|        62 | Tarte au sucre                   |         29 |          3 | 48 pies              |   49.3000 |           17 |            0 |            0 | 0x00                       |
+|        63 | Vegie-spread                     |          7 |          2 | 15 - 625 g jars      |   43.9000 |           24 |            0 |            5 | 0x00                       |
+|        64 | Wimmers gute Semmelkndel         |         12 |          5 | 20 bags x 4 pieces   |   33.2500 |           22 |           80 |           30 | 0x00                       |
+|        65 | Louisiana Fiery Hot Pepper Sauce |          2 |          2 | 32 - 8 oz bottles    |   21.0500 |           76 |            0 |            0 | 0x00                       |
+|        69 | Gudbrandsdalsost                 |         15 |          4 | 10 kg pkg.           |   36.0000 |           26 |            0 |           15 | 0x00                       |
+|        71 | Flotemysost                      |         15 |          4 | 10 - 500 g pkgs.     |   21.5000 |           26 |            0 |            0 | 0x00                       |
+|        72 | Mozzarella di Giovanni           |         14 |          4 | 24 - 200 g pkgs.     |   34.8000 |           14 |            0 |            0 | 0x00                       |
+|        75 | Rhnbru Klosterbier               |         12 |          1 | 24 - 0.5 l bottles   |    7.7500 |          125 |            0 |           25 | 0x00                       |
++-----------+----------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+48 rows in set (0.00 sec)
+
+mysql> select * from Products where UnitPrice between 10 and 20 and CategoryID not in (1,2,3);
++-----------+-------------------------------+------------+------------+-------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                   | SupplierID | CategoryID | QuantityPerUnit   | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+-------------------------------+------------+------------+-------------------+-----------+--------------+--------------+--------------+----------------------------+
+|        31 | Gorgonzola Telino             |         14 |          4 | 12 - 100 g pkgs   |   12.5000 |            0 |           70 |           20 | 0x00                       |
+|        36 | Inlagd Sill                   |         17 |          8 | 24 - 250 g  jars  |   19.0000 |          112 |            0 |           20 | 0x00                       |
+|        40 | Boston Crab Meat              |         19 |          8 | 24 - 4 oz tins    |   18.4000 |          123 |            0 |           30 | 0x00                       |
+|        42 | Singaporean Hokkien Fried Mee |         20 |          5 | 32 - 1 kg pkgs.   |   14.0000 |           26 |            0 |            0 | 0x01                       |
+|        46 | Spegesild                     |         21 |          8 | 4 - 450 g glasses |   12.0000 |           95 |            0 |            0 | 0x00                       |
+|        57 | Ravioli Angelo                |         26 |          5 | 24 - 250 g pkgs.  |   19.5000 |           36 |            0 |           20 | 0x00                       |
+|        58 | Escargots de Bourgogne        |         27 |          8 | 24 pieces         |   13.2500 |           62 |            0 |           20 | 0x00                       |
+|        73 | Rd Kaviar                     |         17 |          8 | 24 - 150 g jars   |   15.0000 |          101 |            0 |            5 | 0x00                       |
+|        74 | Longlife Tofu                 |          4 |          7 | 5 kg pkg.         |   10.0000 |            4 |           20 |            5 | 0x00                       |
++-----------+-------------------------------+------------+------------+-------------------+-----------+--------------+--------------+--------------+----------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Products where ProductName between 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' order by ProductName;
++-----------+----------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                      | SupplierID | CategoryID | QuantityPerUnit     | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+----------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+|        18 | Carnarvon Tigers                 |          7 |          8 | 16 kg pkg.          |   62.5000 |           42 |            0 |            0 | 0x00                       |
+|         1 | Chai                             |          1 |          1 | 10 boxes x 20 bags  |   18.0000 |           39 |            0 |           10 | 0x00                       |
+|         2 | Chang                            |          1 |          1 | 24 - 12 oz bottles  |   19.0000 |           17 |           40 |           25 | 0x00                       |
+|        39 | Chartreuse verte                 |         18 |          1 | 750 cc per bottle   |   18.0000 |           69 |            0 |            5 | 0x00                       |
+|         4 | Chef Anton's Cajun Seasoning     |          2 |          2 | 48 - 6 oz jars      |   22.0000 |           53 |            0 |            0 | 0x00                       |
+|         5 | Chef Anton's Gumbo Mix           |          2 |          2 | 36 boxes            |   21.3500 |            0 |            0 |            0 | 0x01                       |
+|        48 | Chocolade                        |         22 |          3 | 10 pkgs.            |   12.7500 |           15 |           70 |           25 | 0x00                       |
+|        38 | Cte de Blaye                     |         18 |          1 | 12 - 75 cl bottles  |  263.5000 |           17 |            0 |           15 | 0x00                       |
+|        58 | Escargots de Bourgogne           |         27 |          8 | 24 pieces           |   13.2500 |           62 |            0 |           20 | 0x00                       |
+|        52 | Filo Mix                         |         24 |          5 | 16 - 2 kg boxes     |    7.0000 |           38 |            0 |           25 | 0x00                       |
+|        71 | Flotemysost                      |         15 |          4 | 10 - 500 g pkgs.    |   21.5000 |           26 |            0 |            0 | 0x00                       |
+|        33 | Geitost                          |         15 |          4 | 500 g               |    2.5000 |          112 |            0 |           20 | 0x00                       |
+|        15 | Genen Shouyu                     |          6 |          2 | 24 - 250 ml bottles |   15.5000 |           39 |            0 |            5 | 0x00                       |
+|        56 | Gnocchi di nonna Alice           |         26 |          5 | 24 - 250 g pkgs.    |   38.0000 |           21 |           10 |           30 | 0x00                       |
+|        31 | Gorgonzola Telino                |         14 |          4 | 12 - 100 g pkgs     |   12.5000 |            0 |           70 |           20 | 0x00                       |
+|         6 | Grandma's Boysenberry Spread     |          3 |          2 | 12 - 8 oz jars      |   25.0000 |          120 |            0 |           25 | 0x00                       |
+|        37 | Gravad lax                       |         17 |          8 | 12 - 500 g pkgs.    |   26.0000 |           11 |           50 |           25 | 0x00                       |
+|        24 | Guaran Fantstica                 |         10 |          1 | 12 - 355 ml cans    |    4.5000 |           20 |            0 |            0 | 0x01                       |
+|        69 | Gudbrandsdalsost                 |         15 |          4 | 10 kg pkg.          |   36.0000 |           26 |            0 |           15 | 0x00                       |
+|        44 | Gula Malacca                     |         20 |          2 | 20 - 2 kg bags      |   19.4500 |           27 |            0 |           15 | 0x00                       |
+|        26 | Gumbr Gummibrchen                |         11 |          3 | 100 - 250 g bags    |   31.2300 |           15 |            0 |            0 | 0x00                       |
+|        22 | Gustaf's Knckebrd                |          9 |          5 | 24 - 500 g pkgs.    |   21.0000 |          104 |            0 |           25 | 0x00                       |
+|        10 | Ikura                            |          4 |          8 | 12 - 200 ml jars    |   31.0000 |           31 |            0 |            0 | 0x00                       |
+|        36 | Inlagd Sill                      |         17 |          8 | 24 - 250 g  jars    |   19.0000 |          112 |            0 |           20 | 0x00                       |
+|        43 | Ipoh Coffee                      |         20 |          1 | 16 - 500 g tins     |   46.0000 |           17 |           10 |           25 | 0x00                       |
+|        41 | Jack's New England Clam Chowder  |         19 |          8 | 12 - 12 oz cans     |    9.6500 |           85 |            0 |           10 | 0x00                       |
+|        13 | Konbu                            |          6 |          8 | 2 kg box            |    6.0000 |           24 |            0 |            5 | 0x00                       |
+|        76 | Lakkalikri                       |         23 |          1 | 500 ml              |   18.0000 |           57 |            0 |           20 | 0x00                       |
+|        67 | Laughing Lumberjack Lager        |         16 |          1 | 24 - 12 oz bottles  |   14.0000 |           52 |            0 |           10 | 0x00                       |
+|        74 | Longlife Tofu                    |          4 |          7 | 5 kg pkg.           |   10.0000 |            4 |           20 |            5 | 0x00                       |
+|        65 | Louisiana Fiery Hot Pepper Sauce |          2 |          2 | 32 - 8 oz bottles   |   21.0500 |           76 |            0 |            0 | 0x00                       |
+|        66 | Louisiana Hot Spiced Okra        |          2 |          2 | 24 - 8 oz jars      |   17.0000 |            4 |          100 |           20 | 0x00                       |
+|        51 | Manjimup Dried Apples            |         24 |          7 | 50 - 300 g pkgs.    |   53.0000 |           20 |            0 |           10 | 0x00                       |
+|        32 | Mascarpone Fabioli               |         14 |          4 | 24 - 200 g pkgs.    |   32.0000 |            9 |           40 |           25 | 0x00                       |
+|        49 | Maxilaku                         |         23 |          3 | 24 - 50 g pkgs.     |   20.0000 |           10 |           60 |           15 | 0x00                       |
+|         9 | Mishi Kobe Niku                  |          4 |          6 | 18 - 500 g pkgs.    |   97.0000 |           29 |            0 |            0 | 0x01                       |
+|        72 | Mozzarella di Giovanni           |         14 |          4 | 24 - 200 g pkgs.    |   34.8000 |           14 |            0 |            0 | 0x00                       |
++-----------+----------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+37 rows in set (0.00 sec)
+
+mysql> select * from Products where ProductName between 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' order by ProductName desc;
++-----------+----------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                      | SupplierID | CategoryID | QuantityPerUnit     | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+----------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+|        72 | Mozzarella di Giovanni           |         14 |          4 | 24 - 200 g pkgs.    |   34.8000 |           14 |            0 |            0 | 0x00                       |
+|         9 | Mishi Kobe Niku                  |          4 |          6 | 18 - 500 g pkgs.    |   97.0000 |           29 |            0 |            0 | 0x01                       |
+|        49 | Maxilaku                         |         23 |          3 | 24 - 50 g pkgs.     |   20.0000 |           10 |           60 |           15 | 0x00                       |
+|        32 | Mascarpone Fabioli               |         14 |          4 | 24 - 200 g pkgs.    |   32.0000 |            9 |           40 |           25 | 0x00                       |
+|        51 | Manjimup Dried Apples            |         24 |          7 | 50 - 300 g pkgs.    |   53.0000 |           20 |            0 |           10 | 0x00                       |
+|        66 | Louisiana Hot Spiced Okra        |          2 |          2 | 24 - 8 oz jars      |   17.0000 |            4 |          100 |           20 | 0x00                       |
+|        65 | Louisiana Fiery Hot Pepper Sauce |          2 |          2 | 32 - 8 oz bottles   |   21.0500 |           76 |            0 |            0 | 0x00                       |
+|        74 | Longlife Tofu                    |          4 |          7 | 5 kg pkg.           |   10.0000 |            4 |           20 |            5 | 0x00                       |
+|        67 | Laughing Lumberjack Lager        |         16 |          1 | 24 - 12 oz bottles  |   14.0000 |           52 |            0 |           10 | 0x00                       |
+|        76 | Lakkalikri                       |         23 |          1 | 500 ml              |   18.0000 |           57 |            0 |           20 | 0x00                       |
+|        13 | Konbu                            |          6 |          8 | 2 kg box            |    6.0000 |           24 |            0 |            5 | 0x00                       |
+|        41 | Jack's New England Clam Chowder  |         19 |          8 | 12 - 12 oz cans     |    9.6500 |           85 |            0 |           10 | 0x00                       |
+|        43 | Ipoh Coffee                      |         20 |          1 | 16 - 500 g tins     |   46.0000 |           17 |           10 |           25 | 0x00                       |
+|        36 | Inlagd Sill                      |         17 |          8 | 24 - 250 g  jars    |   19.0000 |          112 |            0 |           20 | 0x00                       |
+|        10 | Ikura                            |          4 |          8 | 12 - 200 ml jars    |   31.0000 |           31 |            0 |            0 | 0x00                       |
+|        22 | Gustaf's Knckebrd                |          9 |          5 | 24 - 500 g pkgs.    |   21.0000 |          104 |            0 |           25 | 0x00                       |
+|        26 | Gumbr Gummibrchen                |         11 |          3 | 100 - 250 g bags    |   31.2300 |           15 |            0 |            0 | 0x00                       |
+|        44 | Gula Malacca                     |         20 |          2 | 20 - 2 kg bags      |   19.4500 |           27 |            0 |           15 | 0x00                       |
+|        69 | Gudbrandsdalsost                 |         15 |          4 | 10 kg pkg.          |   36.0000 |           26 |            0 |           15 | 0x00                       |
+|        24 | Guaran Fantstica                 |         10 |          1 | 12 - 355 ml cans    |    4.5000 |           20 |            0 |            0 | 0x01                       |
+|        37 | Gravad lax                       |         17 |          8 | 12 - 500 g pkgs.    |   26.0000 |           11 |           50 |           25 | 0x00                       |
+|         6 | Grandma's Boysenberry Spread     |          3 |          2 | 12 - 8 oz jars      |   25.0000 |          120 |            0 |           25 | 0x00                       |
+|        31 | Gorgonzola Telino                |         14 |          4 | 12 - 100 g pkgs     |   12.5000 |            0 |           70 |           20 | 0x00                       |
+|        56 | Gnocchi di nonna Alice           |         26 |          5 | 24 - 250 g pkgs.    |   38.0000 |           21 |           10 |           30 | 0x00                       |
+|        15 | Genen Shouyu                     |          6 |          2 | 24 - 250 ml bottles |   15.5000 |           39 |            0 |            5 | 0x00                       |
+|        33 | Geitost                          |         15 |          4 | 500 g               |    2.5000 |          112 |            0 |           20 | 0x00                       |
+|        71 | Flotemysost                      |         15 |          4 | 10 - 500 g pkgs.    |   21.5000 |           26 |            0 |            0 | 0x00                       |
+|        52 | Filo Mix                         |         24 |          5 | 16 - 2 kg boxes     |    7.0000 |           38 |            0 |           25 | 0x00                       |
+|        58 | Escargots de Bourgogne           |         27 |          8 | 24 pieces           |   13.2500 |           62 |            0 |           20 | 0x00                       |
+|        38 | Cte de Blaye                     |         18 |          1 | 12 - 75 cl bottles  |  263.5000 |           17 |            0 |           15 | 0x00                       |
+|        48 | Chocolade                        |         22 |          3 | 10 pkgs.            |   12.7500 |           15 |           70 |           25 | 0x00                       |
+|         5 | Chef Anton's Gumbo Mix           |          2 |          2 | 36 boxes            |   21.3500 |            0 |            0 |            0 | 0x01                       |
+|         4 | Chef Anton's Cajun Seasoning     |          2 |          2 | 48 - 6 oz jars      |   22.0000 |           53 |            0 |            0 | 0x00                       |
+|        39 | Chartreuse verte                 |         18 |          1 | 750 cc per bottle   |   18.0000 |           69 |            0 |            5 | 0x00                       |
+|         2 | Chang                            |          1 |          1 | 24 - 12 oz bottles  |   19.0000 |           17 |           40 |           25 | 0x00                       |
+|         1 | Chai                             |          1 |          1 | 10 boxes x 20 bags  |   18.0000 |           39 |            0 |           10 | 0x00                       |
+|        18 | Carnarvon Tigers                 |          7 |          8 | 16 kg pkg.          |   62.5000 |           42 |            0 |            0 | 0x00                       |
++-----------+----------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+----------------------------+
+37 rows in set (0.00 sec)
+
+mysql> select * from Products where ProductName not between 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' order by ProductName desc;
++-----------+---------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                     | SupplierID | CategoryID | QuantityPerUnit      | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+---------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+|        47 | Zaanse koeken                   |         22 |          3 | 10 - 4 oz boxes      |    9.5000 |           36 |            0 |            0 | 0x00                       |
+|        64 | Wimmers gute Semmelkndel        |         12 |          5 | 20 bags x 4 pieces   |   33.2500 |           22 |           80 |           30 | 0x00                       |
+|        63 | Vegie-spread                    |          7 |          2 | 15 - 625 g jars      |   43.9000 |           24 |            0 |            5 | 0x00                       |
+|        50 | Valkoinen suklaa                |         23 |          3 | 12 - 100 g bars      |   16.2500 |           65 |            0 |           30 | 0x00                       |
+|         7 | Uncle Bob's Organic Dried Pears |          3 |          7 | 12 - 1 lb pkgs.      |   30.0000 |           15 |            0 |           10 | 0x00                       |
+|        23 | Tunnbrd                         |          9 |          5 | 12 - 250 g pkgs.     |    9.0000 |           61 |            0 |           25 | 0x00                       |
+|        54 | Tourtire                        |         25 |          6 | 16 pies              |    7.4500 |           21 |            0 |           10 | 0x00                       |
+|        14 | Tofu                            |          6 |          7 | 40 - 100 g pkgs.     |   23.2500 |           35 |            0 |            0 | 0x00                       |
+|        29 | Thringer Rostbratwurst          |         12 |          6 | 50 bags x 30 sausgs. |  123.7900 |            0 |            0 |            0 | 0x01                       |
+|        19 | Teatime Chocolate Biscuits      |          8 |          3 | 10 boxes x 12 pieces |    9.2000 |           25 |            0 |            5 | 0x00                       |
+|        62 | Tarte au sucre                  |         29 |          3 | 48 pies              |   49.3000 |           17 |            0 |            0 | 0x00                       |
+|        35 | Steeleye Stout                  |         16 |          1 | 24 - 12 oz bottles   |   18.0000 |           20 |            0 |           15 | 0x00                       |
+|        46 | Spegesild                       |         21 |          8 | 4 - 450 g glasses    |   12.0000 |           95 |            0 |            0 | 0x00                       |
+|        61 | Sirop d'rable                   |         29 |          2 | 24 - 500 ml bottles  |   28.5000 |          113 |            0 |           25 | 0x00                       |
+|        21 | Sir Rodney's Scones             |          8 |          3 | 24 pkgs. x 4 pieces  |   10.0000 |            3 |           40 |            5 | 0x00                       |
+|        20 | Sir Rodney's Marmalade          |          8 |          3 | 30 gift boxes        |   81.0000 |           40 |            0 |            0 | 0x00                       |
+|        42 | Singaporean Hokkien Fried Mee   |         20 |          5 | 32 - 1 kg pkgs.      |   14.0000 |           26 |            0 |            0 | 0x01                       |
+|        68 | Scottish Longbreads             |          8 |          3 | 10 boxes x 8 pieces  |   12.5000 |            6 |           10 |           15 | 0x00                       |
+|        27 | Schoggi Schokolade              |         11 |          3 | 100 - 100 g pieces   |   43.9000 |           49 |            0 |           30 | 0x00                       |
+|        34 | Sasquatch Ale                   |         16 |          1 | 24 - 12 oz bottles   |   14.0000 |          111 |            0 |           15 | 0x00                       |
+|        28 | Rssle Sauerkraut                |         12 |          7 | 25 - 825 g cans      |   45.6000 |           26 |            0 |            0 | 0x01                       |
+|        45 | Rogede sild                     |         21 |          8 | 1k pkg.              |    9.5000 |            5 |           70 |           15 | 0x00                       |
+|        75 | Rhnbru Klosterbier              |         12 |          1 | 24 - 0.5 l bottles   |    7.7500 |          125 |            0 |           25 | 0x00                       |
+|        73 | Rd Kaviar                       |         17 |          8 | 24 - 150 g jars      |   15.0000 |          101 |            0 |            5 | 0x00                       |
+|        57 | Ravioli Angelo                  |         26 |          5 | 24 - 250 g pkgs.     |   19.5000 |           36 |            0 |           20 | 0x00                       |
+|        59 | Raclette Courdavault            |         28 |          4 | 5 kg pkg.            |   55.0000 |           79 |            0 |            0 | 0x00                       |
+|        12 | Queso Manchego La Pastora       |          5 |          4 | 10 - 500 g pkgs.     |   38.0000 |           86 |            0 |            0 | 0x00                       |
+|        11 | Queso Cabrales                  |          5 |          4 | 1 kg pkg.            |   21.0000 |           22 |           30 |           30 | 0x00                       |
+|        55 | Pt chinois                      |         25 |          6 | 24 boxes x 2 pies    |   24.0000 |          115 |            0 |           20 | 0x00                       |
+|        53 | Perth Pasties                   |         24 |          6 | 48 pieces            |   32.8000 |            0 |            0 |            0 | 0x01                       |
+|        16 | Pavlova                         |          7 |          3 | 32 - 500 g boxes     |   17.4500 |           29 |            0 |           10 | 0x00                       |
+|        70 | Outback Lager                   |          7 |          1 | 24 - 355 ml bottles  |   15.0000 |           15 |           10 |           30 | 0x00                       |
+|        77 | Original Frankfurter grne Soe   |         12 |          2 | 12 boxes             |   13.0000 |           32 |            0 |           15 | 0x00                       |
+|        25 | NuNuCa Nu-Nougat-Creme          |         11 |          3 | 20 - 450 g glasses   |   14.0000 |           76 |            0 |           30 | 0x00                       |
+|         8 | Northwoods Cranberry Sauce      |          3 |          2 | 12 - 12 oz jars      |   40.0000 |            6 |            0 |            0 | 0x00                       |
+|        30 | Nord-Ost Matjeshering           |         13 |          8 | 10 - 200 g glasses   |   25.8900 |           10 |            0 |           15 | 0x00                       |
+|        60 | Camembert Pierrot               |         28 |          4 | 15 - 300 g rounds    |   34.0000 |           19 |            0 |            0 | 0x00                       |
+|        40 | Boston Crab Meat                |         19 |          8 | 24 - 4 oz tins       |   18.4000 |          123 |            0 |           30 | 0x00                       |
+|         3 | Aniseed Syrup                   |          1 |          2 | 12 - 550 ml bottles  |   10.0000 |           13 |           70 |           25 | 0x00                       |
+|        17 | Alice Mutton                    |          7 |          6 | 20 - 1 kg tins       |   39.0000 |            0 |            0 |            0 | 0x01                       |
++-----------+---------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+40 rows in set (0.00 sec)
+
+mysql> select * from Products where ProductName not between 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' order by ProductName;
++-----------+---------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+| ProductID | ProductName                     | SupplierID | CategoryID | QuantityPerUnit      | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued               |
++-----------+---------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+|        17 | Alice Mutton                    |          7 |          6 | 20 - 1 kg tins       |   39.0000 |            0 |            0 |            0 | 0x01                       |
+|         3 | Aniseed Syrup                   |          1 |          2 | 12 - 550 ml bottles  |   10.0000 |           13 |           70 |           25 | 0x00                       |
+|        40 | Boston Crab Meat                |         19 |          8 | 24 - 4 oz tins       |   18.4000 |          123 |            0 |           30 | 0x00                       |
+|        60 | Camembert Pierrot               |         28 |          4 | 15 - 300 g rounds    |   34.0000 |           19 |            0 |            0 | 0x00                       |
+|        30 | Nord-Ost Matjeshering           |         13 |          8 | 10 - 200 g glasses   |   25.8900 |           10 |            0 |           15 | 0x00                       |
+|         8 | Northwoods Cranberry Sauce      |          3 |          2 | 12 - 12 oz jars      |   40.0000 |            6 |            0 |            0 | 0x00                       |
+|        25 | NuNuCa Nu-Nougat-Creme          |         11 |          3 | 20 - 450 g glasses   |   14.0000 |           76 |            0 |           30 | 0x00                       |
+|        77 | Original Frankfurter grne Soe   |         12 |          2 | 12 boxes             |   13.0000 |           32 |            0 |           15 | 0x00                       |
+|        70 | Outback Lager                   |          7 |          1 | 24 - 355 ml bottles  |   15.0000 |           15 |           10 |           30 | 0x00                       |
+|        16 | Pavlova                         |          7 |          3 | 32 - 500 g boxes     |   17.4500 |           29 |            0 |           10 | 0x00                       |
+|        53 | Perth Pasties                   |         24 |          6 | 48 pieces            |   32.8000 |            0 |            0 |            0 | 0x01                       |
+|        55 | Pt chinois                      |         25 |          6 | 24 boxes x 2 pies    |   24.0000 |          115 |            0 |           20 | 0x00                       |
+|        11 | Queso Cabrales                  |          5 |          4 | 1 kg pkg.            |   21.0000 |           22 |           30 |           30 | 0x00                       |
+|        12 | Queso Manchego La Pastora       |          5 |          4 | 10 - 500 g pkgs.     |   38.0000 |           86 |            0 |            0 | 0x00                       |
+|        59 | Raclette Courdavault            |         28 |          4 | 5 kg pkg.            |   55.0000 |           79 |            0 |            0 | 0x00                       |
+|        57 | Ravioli Angelo                  |         26 |          5 | 24 - 250 g pkgs.     |   19.5000 |           36 |            0 |           20 | 0x00                       |
+|        73 | Rd Kaviar                       |         17 |          8 | 24 - 150 g jars      |   15.0000 |          101 |            0 |            5 | 0x00                       |
+|        75 | Rhnbru Klosterbier              |         12 |          1 | 24 - 0.5 l bottles   |    7.7500 |          125 |            0 |           25 | 0x00                       |
+|        45 | Rogede sild                     |         21 |          8 | 1k pkg.              |    9.5000 |            5 |           70 |           15 | 0x00                       |
+|        28 | Rssle Sauerkraut                |         12 |          7 | 25 - 825 g cans      |   45.6000 |           26 |            0 |            0 | 0x01                       |
+|        34 | Sasquatch Ale                   |         16 |          1 | 24 - 12 oz bottles   |   14.0000 |          111 |            0 |           15 | 0x00                       |
+|        27 | Schoggi Schokolade              |         11 |          3 | 100 - 100 g pieces   |   43.9000 |           49 |            0 |           30 | 0x00                       |
+|        68 | Scottish Longbreads             |          8 |          3 | 10 boxes x 8 pieces  |   12.5000 |            6 |           10 |           15 | 0x00                       |
+|        42 | Singaporean Hokkien Fried Mee   |         20 |          5 | 32 - 1 kg pkgs.      |   14.0000 |           26 |            0 |            0 | 0x01                       |
+|        20 | Sir Rodney's Marmalade          |          8 |          3 | 30 gift boxes        |   81.0000 |           40 |            0 |            0 | 0x00                       |
+|        21 | Sir Rodney's Scones             |          8 |          3 | 24 pkgs. x 4 pieces  |   10.0000 |            3 |           40 |            5 | 0x00                       |
+|        61 | Sirop d'rable                   |         29 |          2 | 24 - 500 ml bottles  |   28.5000 |          113 |            0 |           25 | 0x00                       |
+|        46 | Spegesild                       |         21 |          8 | 4 - 450 g glasses    |   12.0000 |           95 |            0 |            0 | 0x00                       |
+|        35 | Steeleye Stout                  |         16 |          1 | 24 - 12 oz bottles   |   18.0000 |           20 |            0 |           15 | 0x00                       |
+|        62 | Tarte au sucre                  |         29 |          3 | 48 pies              |   49.3000 |           17 |            0 |            0 | 0x00                       |
+|        19 | Teatime Chocolate Biscuits      |          8 |          3 | 10 boxes x 12 pieces |    9.2000 |           25 |            0 |            5 | 0x00                       |
+|        29 | Thringer Rostbratwurst          |         12 |          6 | 50 bags x 30 sausgs. |  123.7900 |            0 |            0 |            0 | 0x01                       |
+|        14 | Tofu                            |          6 |          7 | 40 - 100 g pkgs.     |   23.2500 |           35 |            0 |            0 | 0x00                       |
+|        54 | Tourtire                        |         25 |          6 | 16 pies              |    7.4500 |           21 |            0 |           10 | 0x00                       |
+|        23 | Tunnbrd                         |          9 |          5 | 12 - 250 g pkgs.     |    9.0000 |           61 |            0 |           25 | 0x00                       |
+|         7 | Uncle Bob's Organic Dried Pears |          3 |          7 | 12 - 1 lb pkgs.      |   30.0000 |           15 |            0 |           10 | 0x00                       |
+|        50 | Valkoinen suklaa                |         23 |          3 | 12 - 100 g bars      |   16.2500 |           65 |            0 |           30 | 0x00                       |
+|        63 | Vegie-spread                    |          7 |          2 | 15 - 625 g jars      |   43.9000 |           24 |            0 |            5 | 0x00                       |
+|        64 | Wimmers gute Semmelkndel        |         12 |          5 | 20 bags x 4 pieces   |   33.2500 |           22 |           80 |           30 | 0x00                       |
+|        47 | Zaanse koeken                   |         22 |          3 | 10 - 4 oz boxes      |    9.5000 |           36 |            0 |            0 | 0x00                       |
++-----------+---------------------------------+------------+------------+----------------------+-----------+--------------+--------------+--------------+----------------------------+
+40 rows in set (0.00 sec)
+
+
+mysql> select OrderID from Orders where OrderDate between '1996-07-01' and '1996-07-31';
++---------+
+| OrderID |
++---------+
+|   10248 |
+|   10249 |
+|   10250 |
+|   10251 |
+|   10252 |
+|   10253 |
+|   10254 |
+|   10255 |
+|   10256 |
+|   10257 |
+|   10258 |
+|   10259 |
+|   10260 |
+|   10261 |
+|   10262 |
+|   10263 |
+|   10264 |
+|   10265 |
+|   10266 |
+|   10267 |
+|   10268 |
+|   10269 |
++---------+
+22 rows in set (0.00 sec)
+
+mysql> select count(*) from Orders where OrderDate between '1996-07-01' and '1996-07-31';
++----------+
+| count(*) |
++----------+
+|       22 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) as Total from Orders where OrderDate between '1996-07-01' and '1996-07-31';
++-------+
+| Total |
++-------+
+|    22 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country not in ('Norway', 'France') limit 10;
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+| CustomerID | CompanyName                        | ContactName        | Address                      | City         | PostalCode | Country   |
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+| ALFKI      | Alfreds Futterkiste                | Maria Anders       | Obere Str. 57                | Berlin       | 12209      | Germany   |
+| ANATR      | Ana Trujillo Emparedados y helados | Ana Trujillo       | Avda. de la Constitucin 2222 | Mxico D.F.   | 05021      | Mexico    |
+| ANTON      | Antonio Moreno Taquera             | Antonio Moreno     | Mataderos  2312              | Mxico D.F.   | 05023      | Mexico    |
+| AROUT      | Around the Horn                    | Thomas Hardy       | 120 Hanover Sq.              | London       | WA1 1DP    | UK        |
+| BERGS      | Berglunds snabbkp                  | Christina Berglund | Berguvsvgen  8               | Lule         | S-958 22   | Sweden    |
+| BLAUS      | Blauer See Delikatessen            | Hanna Moos         | Forsterstr. 57               | Mannheim     | 68306      | Germany   |
+| BOLID      | Blido Comidas preparadas           | Martn Sommer       | C/ Araquil, 67               | Madrid       | 28023      | Spain     |
+| BOTTM      | Bottom-Dollar Markets              | Elizabeth Lincoln  | 23 Tsawassen Blvd.           | Tsawassen    | T2F 8M4    | Canada    |
+| BSBEV      | B's Beverages                      | Victoria Ashworth  | Fauntleroy Circus            | London       | EC2 5NT    | UK        |
+| CACTU      | Cactus Comidas para llevar         | Patricio Simpson   | Cerrito 333                  | Buenos Aires | 1010       | Argentina |
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+10 rows in set (0.00 sec)
+
+
+mysql> select CustomerID, CompanyName, ContactName, Address, City, PostalCode, Country from Customers where Country not in ('Norway', 'France') limit 10;
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+| CustomerID | CompanyName                        | ContactName        | Address                      | City         | PostalCode | Country   |
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+| ALFKI      | Alfreds Futterkiste                | Maria Anders       | Obere Str. 57                | Berlin       | 12209      | Germany   |
+| ANATR      | Ana Trujillo Emparedados y helados | Ana Trujillo       | Avda. de la Constitucin 2222 | Mxico D.F.   | 05021      | Mexico    |
+| ANTON      | Antonio Moreno Taquera             | Antonio Moreno     | Mataderos  2312              | Mxico D.F.   | 05023      | Mexico    |
+| AROUT      | Around the Horn                    | Thomas Hardy       | 120 Hanover Sq.              | London       | WA1 1DP    | UK        |
+| BERGS      | Berglunds snabbkp                  | Christina Berglund | Berguvsvgen  8               | Lule         | S-958 22   | Sweden    |
+| BLAUS      | Blauer See Delikatessen            | Hanna Moos         | Forsterstr. 57               | Mannheim     | 68306      | Germany   |
+| BOLID      | Blido Comidas preparadas           | Martn Sommer       | C/ Araquil, 67               | Madrid       | 28023      | Spain     |
+| BOTTM      | Bottom-Dollar Markets              | Elizabeth Lincoln  | 23 Tsawassen Blvd.           | Tsawassen    | T2F 8M4    | Canada    |
+| BSBEV      | B's Beverages                      | Victoria Ashworth  | Fauntleroy Circus            | London       | EC2 5NT    | UK        |
+| CACTU      | Cactus Comidas para llevar         | Patricio Simpson   | Cerrito 333                  | Buenos Aires | 1010       | Argentina |
++------------+------------------------------------+--------------------+------------------------------+--------------+------------+-----------+
+10 rows in set (0.00 sec)
+
+
+
+mysql> select ContactName, concat(Address,', ',City,', ', PostalCode, ', ', Country) as ADDRESS from Customers;
++-------------------------+------------------------------------------------------------------------------+
+| ContactName             | ADDRESS                                                                      |
++-------------------------+------------------------------------------------------------------------------+
+| Maria Anders            | Obere Str. 57, Berlin, 12209, Germany                                        |
+| Ana Trujillo            | Avda. de la Constitucin 2222, Mxico D.F., 05021, Mexico                      |
+| Antonio Moreno          | Mataderos  2312, Mxico D.F., 05023, Mexico                                   |
+| Thomas Hardy            | 120 Hanover Sq., London, WA1 1DP, UK                                         |
+| Christina Berglund      | Berguvsvgen  8, Lule, S-958 22, Sweden                                       |
+| Hanna Moos              | Forsterstr. 57, Mannheim, 68306, Germany                                     |
+| Frdrique Citeaux        | 24, place Klber, Strasbourg, 67000, France                                   |
+| Martn Sommer            | C/ Araquil, 67, Madrid, 28023, Spain                                         |
+| Laurence Lebihan        | 12, rue des Bouchers, Marseille, 13008, France                               |
+| Elizabeth Lincoln       | 23 Tsawassen Blvd., Tsawassen, T2F 8M4, Canada                               |
+| Victoria Ashworth       | Fauntleroy Circus, London, EC2 5NT, UK                                       |
+| Patricio Simpson        | Cerrito 333, Buenos Aires, 1010, Argentina                                   |
+| Francisco Chang         | Sierras de Granada 9993, Mxico D.F., 05022, Mexico                           |
+| Yang Wang               | Hauptstr. 29, Bern, 3012, Switzerland                                        |
+| Pedro Afonso            | Av. dos Lusadas, 23, Sao Paulo, 05432-043, Brazil                            |
+| Elizabeth Brown         | Berkeley Gardens 12  Brewery, London, WX1 6LT, UK                            |
+| Sven Ottlieb            | Walserweg 21, Aachen, 52066, Germany                                         |
+| Janine Labrune          | 67, rue des Cinquante Otages, Nantes, 44000, France                          |
+| Ann Devon               | 35 King George, London, WX3 6FW, UK                                          |
+| Roland Mendel           | Kirchgasse 6, Graz, 8010, Austria                                            |
+| Aria Cruz               | Rua Ors, 92, Sao Paulo, 05442-030, Brazil                                    |
+| Diego Roel              | C/ Moralzarzal, 86, Madrid, 28034, Spain                                     |
+| Martine Ranc            | 184, chausse de Tournai, Lille, 59000, France                                |
+| Maria Larsson           | kergatan 24, Brcke, S-844 67, Sweden                                         |
+| Peter Franken           | Berliner Platz 43, Mnchen, 80805, Germany                                    |
+| Carine Schmitt          | 54, rue Royale, Nantes, 44000, France                                        |
+| Paolo Accorti           | Via Monte Bianco 34, Torino, 10100, Italy                                    |
+| Lino Rodriguez          | Jardim das rosas n. 32, Lisboa, 1675, Portugal                               |
+| Eduardo Saavedra        | Rambla de Catalua, 23, Barcelona, 08022, Spain                               |
+| Jos Pedro Freyre        | C/ Romero, 33, Sevilla, 41101, Spain                                         |
+| Andr Fonseca            | Av. Brasil, 442, Campinas, 04876-786, Brazil                                 |
+| Howard Snyder           | 2732 Baker Blvd., Eugene, 97403, USA                                         |
+| Manuel Pereira          | 5 Ave. Los Palos Grandes, Caracas, 1081, Venezuela                           |
+| Mario Pontes            | Rua do Pao, 67, Rio de Janeiro, 05454-876, Brazil                            |
+| Jane Doe                | Gatevein 15, Oslo, 4306, Norway                                              |
+| Carlos Hernndez         | Carrera 22 con Ave. Carlos Soublette #8-35, San Cristbal, 5022, Venezuela    |
+| Yoshi Latimer           | City Center Plaza 516 Main St., Elgin, 97827, USA                            |
+| Patricia McKenna        | NULL                                                                         |
+| Helen Bennett           | Garden House Crowther Way, Cowes, PO31 7PJ, UK                               |
+| Philip Cramer           | Maubelstr. 90, Brandenburg, 14776, Germany                                   |
+| Daniel Tonini           | 67, avenue de l'Europe, Versailles, 78000, France                            |
+| Annette Roulet          | 1 rue Alsace-Lorraine, Toulouse, 31000, France                               |
+| Yoshi Tannamuri         | 1900 Oak St., Vancouver, V3F 2K1, Canada                                     |
+| John Steel              | 12 Orchestra Terrace, Walla Walla, 99362, USA                                |
+| Renate Messner          | Magazinweg 7, Frankfurt a.M., 60528, Germany                                 |
+| Jaime Yorres            | 87 Polk St. Suite 5, San Francisco, 94117, USA                               |
+| Carlos Gonzlez          | Carrera 52 con Ave. Bolvar #65-98 Llano Largo, Barquisimeto, 3508, Venezuela |
+| Felipe Izquierdo        | Ave. 5 de Mayo Porlamar, I. de Margarita, 4980, Venezuela                    |
+| Fran Wilson             | 89 Chiaroscuro Rd., Portland, 97219, USA                                     |
+| Giovanni Rovelli        | Via Ludovico il Moro 22, Bergamo, 24100, Italy                               |
+| Catherine Dewey         | Rue Joseph-Bens 532, Bruxelles, B-1180, Belgium                              |
+| Jean Fresnire           | 43 rue St. Laurent, Montral, H1J 1C3, Canada                                 |
+| Alexander Feuer         | Heerstr. 22, Leipzig, 04179, Germany                                         |
+| Simon Crowther          | South House 300 Queensbridge, London, SW7 1RZ, UK                            |
+| Yvonne Moncada          | Ing. Gustavo Moncada 8585 Piso 20-A, Buenos Aires, 1010, Argentina           |
+| Rene Phillips           | 2743 Bering St., Anchorage, 99508, USA                                       |
+| Henriette Pfalzheim     | Mehrheimerstr. 369, Kln, 50739, Germany                                      |
+| Marie Bertrand          | 265, boulevard Charonne, Paris, 75012, France                                |
+| Guillermo Fernndez      | Calle Dr. Jorge Cash 321, Mxico D.F., 05033, Mexico                          |
+| Georg Pipps             | Geislweg 14, Salzburg, 5020, Austria                                         |
+| Isabel de Castro        | Estrada da sade n. 58, Lisboa, 1756, Portugal                                |
+| Bernardo Batista        | Rua da Panificadora, 12, Rio de Janeiro, 02389-673, Brazil                   |
+| Lcia Carvalho           | Alameda dos Canrios, 891, Sao Paulo, 05487-020, Brazil                       |
+| Horst Kloss             | Taucherstrae 10, Cunewalde, 01307, Germany                                   |
+| Sergio Gutirrez         | Av. del Libertador 900, Buenos Aires, 1010, Argentina                        |
+| Paula Wilson            | 2817 Milton Dr., Albuquerque, 87110, USA                                     |
+| Maurizio Moroni         | Strada Provinciale 124, Reggio Emilia, 42100, Italy                          |
+| Janete Limeira          | Av. Copacabana, 267, Rio de Janeiro, 02389-890, Brazil                       |
+| Michael Holz            | Grenzacherweg 237, Genve, 1203, Switzerland                                  |
+| Alejandra Camino        | Gran Va, 1, Madrid, 28001, Spain                                             |
+| Jonas Bergulfsen        | Erling Skakkes gate 78, Oslo, 4110, Norway                                   |
+| Jose Pavarotti          | 187 Suffolk Ln., Boise, 83720, USA                                           |
+| Hari Kumar              | 90 Wadhurst Rd., London, OX15 4NB, UK                                        |
+| Jytte Petersen          | Vinbltet 34, Kobenhavn, 1734, Denmark                                        |
+| Dominique Perrier       | 25, rue Lauriston, Paris, 75016, France                                      |
+| Art Braunschweiger      | P.O. Box 555, Lander, 82520, USA                                             |
+| Pascale Cartrain        | Boulevard Tirou, 255, Charleroi, B-6000, Belgium                             |
+| Liz Nixon               | 89 Jefferson Way Suite 2, Portland, 97201, USA                               |
+| Liu Wong                | 55 Grizzly Peak Rd., Butte, 59801, USA                                       |
+| Karin Josephs           | Luisenstr. 48, Mnster, 44087, Germany                                        |
+| Miguel Angel Paolino    | Avda. Azteca 123, Mxico D.F., 05033, Mexico                                  |
+| Anabela Domingues       | Av. Ins de Castro, 414, Sao Paulo, 05634-030, Brazil                         |
+| Helvetius Nagy          | 722 DaVinci Blvd., Kirkland, 98034, USA                                      |
+| Palle Ibsen             | Smagsloget 45, rhus, 8200, Denmark                                           |
+| Val2                    | NULL                                                                         |
+| Mary Saveley            | 2, rue du Commerce, Lyon, 69004, France                                      |
+| Paul Henriot            | 59 rue de l'Abbaye, Reims, 51100, France                                     |
+| Rita Mller              | Adenauerallee 900, Stuttgart, 70563, Germany                                 |
+| Pirkko Koskitalo        | Torikatu 38, Oulu, 90110, Finland                                            |
+| Paula Parente           | Rua do Mercado, 12, Resende, 08737-363, Brazil                               |
+| Karl Jablonski          | 305 - 14th Ave. S. Suite 3B, Seattle, 98128, USA                             |
+| Matti Karttunen         | Keskuskatu 45, Helsinki, 21240, Finland                                      |
+| Zbyszek Piestrzeniewicz | ul. Filtrowa 68, Warszawa, 01-012, Poland                                    |
++-------------------------+------------------------------------------------------------------------------+
+93 rows in set (0.00 sec)
+
+mysql> select ContactName as CUSTOMER, concat(Address,', ',City,', ', PostalCode, ', ', Country) as ADDRESS from Customers;
++-------------------------+------------------------------------------------------------------------------+
+| CUSTOMER                | ADDRESS                                                                      |
++-------------------------+------------------------------------------------------------------------------+
+| Maria Anders            | Obere Str. 57, Berlin, 12209, Germany                                        |
+| Ana Trujillo            | Avda. de la Constitucin 2222, Mxico D.F., 05021, Mexico                      |
+| Antonio Moreno          | Mataderos  2312, Mxico D.F., 05023, Mexico                                   |
+| Thomas Hardy            | 120 Hanover Sq., London, WA1 1DP, UK                                         |
+| Christina Berglund      | Berguvsvgen  8, Lule, S-958 22, Sweden                                       |
+| Hanna Moos              | Forsterstr. 57, Mannheim, 68306, Germany                                     |
+| Frdrique Citeaux        | 24, place Klber, Strasbourg, 67000, France                                   |
+| Martn Sommer            | C/ Araquil, 67, Madrid, 28023, Spain                                         |
+| Laurence Lebihan        | 12, rue des Bouchers, Marseille, 13008, France                               |
+| Elizabeth Lincoln       | 23 Tsawassen Blvd., Tsawassen, T2F 8M4, Canada                               |
+| Victoria Ashworth       | Fauntleroy Circus, London, EC2 5NT, UK                                       |
+| Patricio Simpson        | Cerrito 333, Buenos Aires, 1010, Argentina                                   |
+| Francisco Chang         | Sierras de Granada 9993, Mxico D.F., 05022, Mexico                           |
+| Yang Wang               | Hauptstr. 29, Bern, 3012, Switzerland                                        |
+| Pedro Afonso            | Av. dos Lusadas, 23, Sao Paulo, 05432-043, Brazil                            |
+| Elizabeth Brown         | Berkeley Gardens 12  Brewery, London, WX1 6LT, UK                            |
+| Sven Ottlieb            | Walserweg 21, Aachen, 52066, Germany                                         |
+| Janine Labrune          | 67, rue des Cinquante Otages, Nantes, 44000, France                          |
+| Ann Devon               | 35 King George, London, WX3 6FW, UK                                          |
+| Roland Mendel           | Kirchgasse 6, Graz, 8010, Austria                                            |
+| Aria Cruz               | Rua Ors, 92, Sao Paulo, 05442-030, Brazil                                    |
+| Diego Roel              | C/ Moralzarzal, 86, Madrid, 28034, Spain                                     |
+| Martine Ranc            | 184, chausse de Tournai, Lille, 59000, France                                |
+| Maria Larsson           | kergatan 24, Brcke, S-844 67, Sweden                                         |
+| Peter Franken           | Berliner Platz 43, Mnchen, 80805, Germany                                    |
+| Carine Schmitt          | 54, rue Royale, Nantes, 44000, France                                        |
+| Paolo Accorti           | Via Monte Bianco 34, Torino, 10100, Italy                                    |
+| Lino Rodriguez          | Jardim das rosas n. 32, Lisboa, 1675, Portugal                               |
+| Eduardo Saavedra        | Rambla de Catalua, 23, Barcelona, 08022, Spain                               |
+| Jos Pedro Freyre        | C/ Romero, 33, Sevilla, 41101, Spain                                         |
+| Andr Fonseca            | Av. Brasil, 442, Campinas, 04876-786, Brazil                                 |
+| Howard Snyder           | 2732 Baker Blvd., Eugene, 97403, USA                                         |
+| Manuel Pereira          | 5 Ave. Los Palos Grandes, Caracas, 1081, Venezuela                           |
+| Mario Pontes            | Rua do Pao, 67, Rio de Janeiro, 05454-876, Brazil                            |
+| Jane Doe                | Gatevein 15, Oslo, 4306, Norway                                              |
+| Carlos Hernndez         | Carrera 22 con Ave. Carlos Soublette #8-35, San Cristbal, 5022, Venezuela    |
+| Yoshi Latimer           | City Center Plaza 516 Main St., Elgin, 97827, USA                            |
+| Patricia McKenna        | NULL                                                                         |
+| Helen Bennett           | Garden House Crowther Way, Cowes, PO31 7PJ, UK                               |
+| Philip Cramer           | Maubelstr. 90, Brandenburg, 14776, Germany                                   |
+| Daniel Tonini           | 67, avenue de l'Europe, Versailles, 78000, France                            |
+| Annette Roulet          | 1 rue Alsace-Lorraine, Toulouse, 31000, France                               |
+| Yoshi Tannamuri         | 1900 Oak St., Vancouver, V3F 2K1, Canada                                     |
+| John Steel              | 12 Orchestra Terrace, Walla Walla, 99362, USA                                |
+| Renate Messner          | Magazinweg 7, Frankfurt a.M., 60528, Germany                                 |
+| Jaime Yorres            | 87 Polk St. Suite 5, San Francisco, 94117, USA                               |
+| Carlos Gonzlez          | Carrera 52 con Ave. Bolvar #65-98 Llano Largo, Barquisimeto, 3508, Venezuela |
+| Felipe Izquierdo        | Ave. 5 de Mayo Porlamar, I. de Margarita, 4980, Venezuela                    |
+| Fran Wilson             | 89 Chiaroscuro Rd., Portland, 97219, USA                                     |
+| Giovanni Rovelli        | Via Ludovico il Moro 22, Bergamo, 24100, Italy                               |
+| Catherine Dewey         | Rue Joseph-Bens 532, Bruxelles, B-1180, Belgium                              |
+| Jean Fresnire           | 43 rue St. Laurent, Montral, H1J 1C3, Canada                                 |
+| Alexander Feuer         | Heerstr. 22, Leipzig, 04179, Germany                                         |
+| Simon Crowther          | South House 300 Queensbridge, London, SW7 1RZ, UK                            |
+| Yvonne Moncada          | Ing. Gustavo Moncada 8585 Piso 20-A, Buenos Aires, 1010, Argentina           |
+| Rene Phillips           | 2743 Bering St., Anchorage, 99508, USA                                       |
+| Henriette Pfalzheim     | Mehrheimerstr. 369, Kln, 50739, Germany                                      |
+| Marie Bertrand          | 265, boulevard Charonne, Paris, 75012, France                                |
+| Guillermo Fernndez      | Calle Dr. Jorge Cash 321, Mxico D.F., 05033, Mexico                          |
+| Georg Pipps             | Geislweg 14, Salzburg, 5020, Austria                                         |
+| Isabel de Castro        | Estrada da sade n. 58, Lisboa, 1756, Portugal                                |
+| Bernardo Batista        | Rua da Panificadora, 12, Rio de Janeiro, 02389-673, Brazil                   |
+| Lcia Carvalho           | Alameda dos Canrios, 891, Sao Paulo, 05487-020, Brazil                       |
+| Horst Kloss             | Taucherstrae 10, Cunewalde, 01307, Germany                                   |
+| Sergio Gutirrez         | Av. del Libertador 900, Buenos Aires, 1010, Argentina                        |
+| Paula Wilson            | 2817 Milton Dr., Albuquerque, 87110, USA                                     |
+| Maurizio Moroni         | Strada Provinciale 124, Reggio Emilia, 42100, Italy                          |
+| Janete Limeira          | Av. Copacabana, 267, Rio de Janeiro, 02389-890, Brazil                       |
+| Michael Holz            | Grenzacherweg 237, Genve, 1203, Switzerland                                  |
+| Alejandra Camino        | Gran Va, 1, Madrid, 28001, Spain                                             |
+| Jonas Bergulfsen        | Erling Skakkes gate 78, Oslo, 4110, Norway                                   |
+| Jose Pavarotti          | 187 Suffolk Ln., Boise, 83720, USA                                           |
+| Hari Kumar              | 90 Wadhurst Rd., London, OX15 4NB, UK                                        |
+| Jytte Petersen          | Vinbltet 34, Kobenhavn, 1734, Denmark                                        |
+| Dominique Perrier       | 25, rue Lauriston, Paris, 75016, France                                      |
+| Art Braunschweiger      | P.O. Box 555, Lander, 82520, USA                                             |
+| Pascale Cartrain        | Boulevard Tirou, 255, Charleroi, B-6000, Belgium                             |
+| Liz Nixon               | 89 Jefferson Way Suite 2, Portland, 97201, USA                               |
+| Liu Wong                | 55 Grizzly Peak Rd., Butte, 59801, USA                                       |
+| Karin Josephs           | Luisenstr. 48, Mnster, 44087, Germany                                        |
+| Miguel Angel Paolino    | Avda. Azteca 123, Mxico D.F., 05033, Mexico                                  |
+| Anabela Domingues       | Av. Ins de Castro, 414, Sao Paulo, 05634-030, Brazil                         |
+| Helvetius Nagy          | 722 DaVinci Blvd., Kirkland, 98034, USA                                      |
+| Palle Ibsen             | Smagsloget 45, rhus, 8200, Denmark                                           |
+| Val2                    | NULL                                                                         |
+| Mary Saveley            | 2, rue du Commerce, Lyon, 69004, France                                      |
+| Paul Henriot            | 59 rue de l'Abbaye, Reims, 51100, France                                     |
+| Rita Mller              | Adenauerallee 900, Stuttgart, 70563, Germany                                 |
+| Pirkko Koskitalo        | Torikatu 38, Oulu, 90110, Finland                                            |
+| Paula Parente           | Rua do Mercado, 12, Resende, 08737-363, Brazil                               |
+| Karl Jablonski          | 305 - 14th Ave. S. Suite 3B, Seattle, 98128, USA                             |
+| Matti Karttunen         | Keskuskatu 45, Helsinki, 21240, Finland                                      |
+| Zbyszek Piestrzeniewicz | ul. Filtrowa 68, Warszawa, 01-012, Poland                                    |
++-------------------------+------------------------------------------------------------------------------+
+93 rows in set (0.00 sec)
+
+mysql> select ContactName as CUSTOMER, concat(Address,', ',City,', ', PostalCode, ', ', Country) as ADDRESS from Customers limit 10;
++--------------------+---------------------------------------------------------+
+| CUSTOMER           | ADDRESS                                                 |
++--------------------+---------------------------------------------------------+
+| Maria Anders       | Obere Str. 57, Berlin, 12209, Germany                   |
+| Ana Trujillo       | Avda. de la Constitucin 2222, Mxico D.F., 05021, Mexico |
+| Antonio Moreno     | Mataderos  2312, Mxico D.F., 05023, Mexico              |
+| Thomas Hardy       | 120 Hanover Sq., London, WA1 1DP, UK                    |
+| Christina Berglund | Berguvsvgen  8, Lule, S-958 22, Sweden                  |
+| Hanna Moos         | Forsterstr. 57, Mannheim, 68306, Germany                |
+| Frdrique Citeaux   | 24, place Klber, Strasbourg, 67000, France              |
+| Martn Sommer       | C/ Araquil, 67, Madrid, 28023, Spain                    |
+| Laurence Lebihan   | 12, rue des Bouchers, Marseille, 13008, France          |
+| Elizabeth Lincoln  | 23 Tsawassen Blvd., Tsawassen, T2F 8M4, Canada          |
++--------------------+---------------------------------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select ContactName as CUSTOMER, concat(Address,', ',City,', ', PostalCode, ', ', Country) as ADDRESS from Customers order by ContactName limit 10;
++--------------------+---------------------------------------------------------+
+| CUSTOMER           | ADDRESS                                                 |
++--------------------+---------------------------------------------------------+
+| Alejandra Camino   | Gran Va, 1, Madrid, 28001, Spain                        |
+| Alexander Feuer    | Heerstr. 22, Leipzig, 04179, Germany                    |
+| Ana Trujillo       | Avda. de la Constitucin 2222, Mxico D.F., 05021, Mexico |
+| Anabela Domingues  | Av. Ins de Castro, 414, Sao Paulo, 05634-030, Brazil    |
+| Andr Fonseca       | Av. Brasil, 442, Campinas, 04876-786, Brazil            |
+| Ann Devon          | 35 King George, London, WX3 6FW, UK                     |
+| Annette Roulet     | 1 rue Alsace-Lorraine, Toulouse, 31000, France          |
+| Antonio Moreno     | Mataderos  2312, Mxico D.F., 05023, Mexico              |
+| Aria Cruz          | Rua Ors, 92, Sao Paulo, 05442-030, Brazil               |
+| Art Braunschweiger | P.O. Box 555, Lander, 82520, USA                        |
++--------------------+---------------------------------------------------------+
+10 rows in set (0.00 sec)
