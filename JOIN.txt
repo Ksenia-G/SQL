@@ -1,0 +1,335 @@
+
+mysql> use northwind;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+mysql> select Orders.OrderID, Customers.CompanyName, Orders.OrderDate from Orders inner join Customers on Orders.CustomerID = Customers.CustomerID;
++---------+------------------------------------+---------------------+
+| OrderID | CompanyName                        | OrderDate           |
++---------+------------------------------------+---------------------+
+|   10643 | Alfreds Futterkiste                | 1997-08-25 00:00:00 |
+|   10692 | Alfreds Futterkiste                | 1997-10-03 00:00:00 |
+|   10702 | Alfreds Futterkiste                | 1997-10-13 00:00:00 |
+|   10835 | Alfreds Futterkiste                | 1998-01-15 00:00:00 |
+|   10952 | Alfreds Futterkiste                | 1998-03-16 00:00:00 |
+|   11011 | Alfreds Futterkiste                | 1998-04-09 00:00:00 |
+|   10308 | Ana Trujillo Emparedados y helados | 1996-09-18 00:00:00 |
+|   10625 | Ana Trujillo Emparedados y helados | 1997-08-08 00:00:00 |
+|   10759 | Ana Trujillo Emparedados y helados | 1997-11-28 00:00:00 |
+
+|   10615 | Wilman Kala                        | 1997-07-30 00:00:00 |
+|   10673 | Wilman Kala                        | 1997-09-18 00:00:00 |
+|   10695 | Wilman Kala                        | 1997-10-07 00:00:00 |
+|   10873 | Wilman Kala                        | 1998-02-06 00:00:00 |
+|   10879 | Wilman Kala                        | 1998-02-10 00:00:00 |
+|   10910 | Wilman Kala                        | 1998-02-26 00:00:00 |
+|   11005 | Wilman Kala                        | 1998-04-07 00:00:00 |
+|   10374 | Wolski  Zajazd                     | 1996-12-05 00:00:00 |
+|   10611 | Wolski  Zajazd                     | 1997-07-25 00:00:00 |
+|   10792 | Wolski  Zajazd                     | 1997-12-23 00:00:00 |
+|   10870 | Wolski  Zajazd                     | 1998-02-04 00:00:00 |
+|   10906 | Wolski  Zajazd                     | 1998-02-25 00:00:00 |
+|   10998 | Wolski  Zajazd                     | 1998-04-03 00:00:00 |
+|   11044 | Wolski  Zajazd                     | 1998-04-23 00:00:00 |
++---------+------------------------------------+---------------------+
+830 rows in set (0.00 sec)
+
+mysql> select Customers.CustomerID, Orders.OrderID, Customers.CompanyName, Orders.OrderDate from Orders inner join Customers on Orders.CustomerID = Customers.CustomerID;
++------------+---------+------------------------------------+---------------------+
+| CustomerID | OrderID | CompanyName                        | OrderDate           |
++------------+---------+------------------------------------+---------------------+
+| ALFKI      |   10643 | Alfreds Futterkiste                | 1997-08-25 00:00:00 |
+| ALFKI      |   10692 | Alfreds Futterkiste                | 1997-10-03 00:00:00 |
+| ALFKI      |   10702 | Alfreds Futterkiste                | 1997-10-13 00:00:00 |
+| ALFKI      |   10835 | Alfreds Futterkiste                | 1998-01-15 00:00:00 |
+| ALFKI      |   10952 | Alfreds Futterkiste                | 1998-03-16 00:00:00 |
+| ALFKI      |   11011 | Alfreds Futterkiste                | 1998-04-09 00:00:00 |
+| ANATR      |   10308 | Ana Trujillo Emparedados y helados | 1996-09-18 00:00:00 |
+| ANATR      |   10625 | Ana Trujillo Emparedados y helados | 1997-08-08 00:00:00 |
+| ANATR      |   10759 | Ana Trujillo Emparedados y helados | 1997-11-28 00:00:00 |
+| ANATR      |   10926 | Ana Trujillo Emparedados y helados | 1998-03-04 00:00:00 |
+| ANTON      |   10365 | Antonio Moreno Taquera             | 1996-11-27 00:00:00 |
+| ANTON      |   10507 | Antonio Moreno Taquera             | 1997-04-15 00:00:00 |
+| ANTON      |   10535 | Antonio Moreno Taquera             | 1997-05-13 00:00:00 |
+| ANTON      |   10573 | Antonio Moreno Taquera             | 1997-06-19 00:00:00 |
+| ANTON      |   10677 | Antonio Moreno Taquera             | 1997-09-22 00:00:00 |
+| ANTON      |   10682 | Antonio Moreno Taquera             | 1997-09-25 00:00:00 |
+| ANTON      |   10856 | Antonio Moreno Taquera             | 1998-01-28 00:00:00 |
+| AROUT      |   10355 | Around the Horn                    | 1996-11-15 00:00:00 |
+
+| WILMK      |   10910 | Wilman Kala                        | 1998-02-26 00:00:00 |
+| WILMK      |   11005 | Wilman Kala                        | 1998-04-07 00:00:00 |
+| WOLZA      |   10374 | Wolski  Zajazd                     | 1996-12-05 00:00:00 |
+| WOLZA      |   10611 | Wolski  Zajazd                     | 1997-07-25 00:00:00 |
+| WOLZA      |   10792 | Wolski  Zajazd                     | 1997-12-23 00:00:00 |
+| WOLZA      |   10870 | Wolski  Zajazd                     | 1998-02-04 00:00:00 |
+| WOLZA      |   10906 | Wolski  Zajazd                     | 1998-02-25 00:00:00 |
+| WOLZA      |   10998 | Wolski  Zajazd                     | 1998-04-03 00:00:00 |
+| WOLZA      |   11044 | Wolski  Zajazd                     | 1998-04-23 00:00:00 |
++------------+---------+------------------------------------+---------------------+
+830 rows in set (0.00 sec)
+
+
+mysql> select Orders.CustomerID, Orders.OrderDate, concat(Customers.CompanyName, ', ', Customers.ContactName) as Customer, Customers.Country from Customers inner join Orders on Orders.CustomerID = Customers.CustomerID limit 20;
++------------+---------------------+--------------------------------------------------+---------+
+| CustomerID | OrderDate           | Customer                                         | Country |
++------------+---------------------+--------------------------------------------------+---------+
+| ALFKI      | 1997-08-25 00:00:00 | Alfreds Futterkiste, Maria Anders                | Germany |
+| ALFKI      | 1997-10-03 00:00:00 | Alfreds Futterkiste, Maria Anders                | Germany |
+| ALFKI      | 1997-10-13 00:00:00 | Alfreds Futterkiste, Maria Anders                | Germany |
+| ALFKI      | 1998-01-15 00:00:00 | Alfreds Futterkiste, Maria Anders                | Germany |
+| ALFKI      | 1998-03-16 00:00:00 | Alfreds Futterkiste, Maria Anders                | Germany |
+| ALFKI      | 1998-04-09 00:00:00 | Alfreds Futterkiste, Maria Anders                | Germany |
+| ANATR      | 1996-09-18 00:00:00 | Ana Trujillo Emparedados y helados, Ana Trujillo | Mexico  |
+| ANATR      | 1997-08-08 00:00:00 | Ana Trujillo Emparedados y helados, Ana Trujillo | Mexico  |
+| ANATR      | 1997-11-28 00:00:00 | Ana Trujillo Emparedados y helados, Ana Trujillo | Mexico  |
+| ANATR      | 1998-03-04 00:00:00 | Ana Trujillo Emparedados y helados, Ana Trujillo | Mexico  |
+| ANTON      | 1996-11-27 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| ANTON      | 1997-04-15 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| ANTON      | 1997-05-13 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| ANTON      | 1997-06-19 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| ANTON      | 1997-09-22 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| ANTON      | 1997-09-25 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| ANTON      | 1998-01-28 00:00:00 | Antonio Moreno Taquera, Antonio Moreno           | Mexico  |
+| AROUT      | 1996-11-15 00:00:00 | Around the Horn, Thomas Hardy                    | UK      |
+| AROUT      | 1996-12-16 00:00:00 | Around the Horn, Thomas Hardy                    | UK      |
+| AROUT      | 1997-02-21 00:00:00 | Around the Horn, Thomas Hardy                    | UK      |
++------------+---------------------+--------------------------------------------------+---------+
+20 rows in set (0.00 sec)
+
+mysql> desc Customers;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| CustomerID   | varchar(5)  | NO   | PRI | NULL    |       |
+| CompanyName  | varchar(40) | NO   | MUL | NULL    |       |
+| ContactName  | varchar(30) | YES  |     | NULL    |       |
+| ContactTitle | varchar(30) | YES  |     | NULL    |       |
+| Address      | varchar(60) | YES  |     | NULL    |       |
+| City         | varchar(15) | YES  | MUL | NULL    |       |
+| Region       | varchar(15) | YES  | MUL | NULL    |       |
+| PostalCode   | varchar(10) | YES  | MUL | NULL    |       |
+| Country      | varchar(15) | YES  |     | NULL    |       |
+| Phone        | varchar(24) | YES  |     | NULL    |       |
+| Fax          | varchar(24) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+11 rows in set (0.01 sec)
+
+mysql> desc Orders;
++----------------+---------------+------+-----+---------+----------------+
+| Field          | Type          | Null | Key | Default | Extra          |
++----------------+---------------+------+-----+---------+----------------+
+| OrderID        | int           | NO   | PRI | NULL    | auto_increment |
+| CustomerID     | varchar(5)    | YES  | MUL | NULL    |                |
+| EmployeeID     | int           | YES  | MUL | NULL    |                |
+| OrderDate      | datetime      | YES  | MUL | NULL    |                |
+| RequiredDate   | datetime      | YES  |     | NULL    |                |
+| ShippedDate    | datetime      | YES  | MUL | NULL    |                |
+| ShipVia        | int           | YES  | MUL | NULL    |                |
+| Freight        | decimal(10,4) | YES  |     | 0.0000  |                |
+| ShipName       | varchar(40)   | YES  |     | NULL    |                |
+| ShipAddress    | varchar(60)   | YES  |     | NULL    |                |
+| ShipCity       | varchar(15)   | YES  |     | NULL    |                |
+| ShipRegion     | varchar(15)   | YES  |     | NULL    |                |
+| ShipPostalCode | varchar(10)   | YES  | MUL | NULL    |                |
+| ShipCountry    | varchar(15)   | YES  |     | NULL    |                |
++----------------+---------------+------+-----+---------+----------------+
+14 rows in set (0.01 sec)
+
+
+mysql> #select all customers, and any orders they might have#
+mysql> select Customers.CompanyName, Orders.OrderID from Customers left join Orders on Customers.CustomerID = Orders.OrderID limit 20;
++------------------------------------+---------+
+| CompanyName                        | OrderID |
++------------------------------------+---------+
+| Alfreds Futterkiste                |    NULL |
+| Ana Trujillo Emparedados y helados |    NULL |
+| Antonio Moreno Taquera             |    NULL |
+| Around the Horn                    |    NULL |
+| B's Beverages                      |    NULL |
+| Berglunds snabbkp                  |    NULL |
+| Blauer See Delikatessen            |    NULL |
+| Blido Comidas preparadas           |    NULL |
+| Blondesddsl pre et fils            |    NULL |
+| Bon app'                           |    NULL |
+| Bottom-Dollar Markets              |    NULL |
+| Cactus Comidas para llevar         |    NULL |
+| Centro comercial Moctezuma         |    NULL |
+| Chop-suey Chinese                  |    NULL |
+| Comrcio Mineiro                    |    NULL |
+| Consolidated Holdings              |    NULL |
+| Die Wandernde Kuh                  |    NULL |
+| Drachenblut Delikatessen           |    NULL |
+| Du monde entier                    |    NULL |
+| Eastern Connection                 |    NULL |
++------------------------------------+---------+
+20 rows in set (0.00 sec)
+
+mysql> desc Employees;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| EmployeeID      | int          | NO   | PRI | NULL    | auto_increment |
+| LastName        | varchar(20)  | NO   | MUL | NULL    |                |
+| FirstName       | varchar(10)  | NO   |     | NULL    |                |
+| Title           | varchar(30)  | YES  |     | NULL    |                |
+| TitleOfCourtesy | varchar(25)  | YES  |     | NULL    |                |
+| BirthDate       | datetime     | YES  |     | NULL    |                |
+| HireDate        | datetime     | YES  |     | NULL    |                |
+| Address         | varchar(60)  | YES  |     | NULL    |                |
+| City            | varchar(15)  | YES  |     | NULL    |                |
+| Region          | varchar(15)  | YES  |     | NULL    |                |
+| PostalCode      | varchar(10)  | YES  | MUL | NULL    |                |
+| Country         | varchar(15)  | YES  |     | NULL    |                |
+| HomePhone       | varchar(24)  | YES  |     | NULL    |                |
+| Extension       | varchar(4)   | YES  |     | NULL    |                |
+| Photo           | longblob     | YES  |     | NULL    |                |
+| Notes           | mediumtext   | NO   |     | NULL    |                |
+| ReportsTo       | int          | YES  | MUL | NULL    |                |
+| PhotoPath       | varchar(255) | YES  |     | NULL    |                |
+| Salary          | float        | YES  |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select Employees.EmployeeID, Orders.OrderID, Orders.OrderDate from Employees right join Orders on Orders.EmployeeID = Employees.EmployeeID;
++------------+---------+---------------------+
+| EmployeeID | OrderID | OrderDate           |
++------------+---------+---------------------+
+|          5 |   10248 | 1996-07-04 00:00:00 |
+|          6 |   10249 | 1996-07-05 00:00:00 |
+|          4 |   10250 | 1996-07-08 00:00:00 |
+|          3 |   10251 | 1996-07-08 00:00:00 |
+
+|          7 |   11074 | 1998-05-06 00:00:00 |
+|          8 |   11075 | 1998-05-06 00:00:00 |
+|          4 |   11076 | 1998-05-06 00:00:00 |
+|          1 |   11077 | 1998-05-06 00:00:00 |
++------------+---------+---------------------+
+830 rows in set (0.00 sec)
+
+mysql> select Employees.EmployeeID, Orders.OrderID, Orders.OrderDate from Employees right join Orders on Orders.EmployeeID = Employees.EmployeeID order by EmployeeID;
++------------+---------+---------------------+
+| EmployeeID | OrderID | OrderDate           |
++------------+---------+---------------------+
+|          1 |   10258 | 1996-07-17 00:00:00 |
+|          1 |   10270 | 1996-08-01 00:00:00 |
+|          1 |   10275 | 1996-08-07 00:00:00 |
+|          1 |   10285 | 1996-08-20 00:00:00 |
+|          1 |   10292 | 1996-08-28 00:00:00 |
+|          1 |   10293 | 1996-08-29 00:00:00 |
+|          1 |   10304 | 1996-09-12 00:00:00 |
+
+|          9 |   11016 | 1998-04-10 00:00:00 |
+|          9 |   11017 | 1998-04-13 00:00:00 |
+|          9 |   11022 | 1998-04-14 00:00:00 |
+|          9 |   11058 | 1998-04-29 00:00:00 |
++------------+---------+---------------------+
+830 rows in set (0.01 sec)
+
+mysql> select Orders.OrderDate, Employees.LastName from Employees right join Orders on Orders.EmployeeID = Employees.EmployeeID;
++---------------------+-----------+
+| OrderDate           | LastName  |
++---------------------+-----------+
+| 1996-07-04 00:00:00 | Buchanan  |
+| 1996-07-05 00:00:00 | Suyama    |
+| 1996-07-08 00:00:00 | Peacock   |
+| 1996-07-08 00:00:00 | Leverling |
+| 1996-07-09 00:00:00 | Peacock   |
+| 1996-07-10 00:00:00 | Leverling |
+| 1996-07-11 00:00:00 | Buchanan  |
+| 1996-07-12 00:00:00 | Dodsworth |
+| 1996-07-15 00:00:00 | Leverling |
+
+| 1998-05-05 00:00:00 | Peacock   |
+| 1998-05-05 00:00:00 | Fuller    |
+| 1998-05-06 00:00:00 | King      |
+| 1998-05-06 00:00:00 | Callahan  |
+| 1998-05-06 00:00:00 | Peacock   |
+| 1998-05-06 00:00:00 | Davolio   |
++---------------------+-----------+
+830 rows in set (0.00 sec)
+
+
+mysql> select Orders.OrderID, Employees.LastName, Employees.FirstName from Orders right join Employees on Orders.EmployeeID = Employees.EmployeeID;
++---------+-----------+-----------+
+| OrderID | LastName  | FirstName |
++---------+-----------+-----------+
+|   10258 | Davolio   | Nancy     |
+|   10270 | Davolio   | Nancy     |
+|   10275 | Davolio   | Nancy     |
+|   10285 | Davolio   | Nancy     |
+|   10292 | Davolio   | Nancy     |
+
+|   10978 | Dodsworth | Anne      |
+|   11016 | Dodsworth | Anne      |
+|   11017 | Dodsworth | Anne      |
+|   11022 | Dodsworth | Anne      |
+|   11058 | Dodsworth | Anne      |
++---------+-----------+-----------+
+830 rows in set (0.00 sec)
+
+mysql> select Customers.ContactName, Orders.OrderID from Customers left join Orders on Customers.CustomerID = Orders.CustomerID union select Customers.ContactName, Orders.OrderID from Customers right join Orders on Customers.CustomerID = Orders.CustomerID;
++-------------------------+---------+
+| ContactName             | OrderID |
++-------------------------+---------+
+| Maria Anders            |   10643 |
+| Maria Anders            |   10692 |
+| Maria Anders            |   10702 |
+| Maria Anders            |   10835 |
+| Maria Anders            |   10952 |
+| Maria Anders            |   11011 |
+| Ana Trujillo            |   10308 |
+| Ana Trujillo            |   10625 |
+| Ana Trujillo            |   10759 |
+| Ana Trujillo            |   10926 |
+
+| Pirkko Koskitalo        |   10583 |
+| Pirkko Koskitalo        |   10636 |
+| Pirkko Koskitalo        |   10750 |
+| Zbyszek Piestrzeniewicz |   10374 |
+| Zbyszek Piestrzeniewicz |   10611 |
+| Zbyszek Piestrzeniewicz |   10792 |
+| Zbyszek Piestrzeniewicz |   10870 |
+| Zbyszek Piestrzeniewicz |   10906 |
+| Zbyszek Piestrzeniewicz |   10998 |
+| Zbyszek Piestrzeniewicz |   11044 |
++-------------------------+---------+
+834 rows in set (0.00 sec)
+
+mysql> select c.ContactName, o.OrderID from Customers c left join Orders o on c.CustomerID = o.CustomerID union select c.ContactName, o.OrderID from Customers c right join Orders o on c.CustomerID = o.CustomerID;
++-------------------------+---------+
+| ContactName             | OrderID |
++-------------------------+---------+
+| Maria Anders            |   10643 |
+| Maria Anders            |   10692 |
+| Maria Anders            |   10702 |
+| Maria Anders            |   10835 |
+| Maria Anders            |   10952 |
+| Maria Anders            |   11011 |
+| Ana Trujillo            |   10308 |
+| Ana Trujillo            |   10625 |
+| Ana Trujillo            |   10759 |
+| Ana Trujillo            |   10926 |
+| Antonio Moreno          |   10365 |
+| Antonio Moreno          |   10507 |
+| Antonio Moreno          |   10535 |
+| Antonio Moreno          |   10573 |
+| Antonio Moreno          |   10677 |
+| Antonio Moreno          |   10682 |
+| Antonio Moreno          |   10856 |
+| Thomas Hardy            |   10355 |
+| Thomas Hardy            |   10383 |
+| Thomas Hardy            |   10453 |
+| Thomas Hardy            |   10558 |
+| Thomas Hardy            |   10707 |
+
+
+| Zbyszek Piestrzeniewicz |   10906 |
+| Zbyszek Piestrzeniewicz |   10998 |
+| Zbyszek Piestrzeniewicz |   11044 |
++-------------------------+---------+
+834 rows in set (0.01 sec)
+
+mysql> 
